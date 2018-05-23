@@ -39,4 +39,13 @@ class Payment extends Model
     {
         return $this->belongsTo(Donation::class);
     }
+
+    public static function createFromDonation(Donation $donation)
+    {
+        return tap(new static, function (self $model) use ($donation) {
+            $model->status = 0;
+            $model->amount = $donation->amount;
+            $donation->payments()->save($model);
+        });
+    }
 }
