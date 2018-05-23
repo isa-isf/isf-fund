@@ -2,6 +2,7 @@
 
 namespace App\Eloquent;
 
+use App\Enums\PaymentStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -43,7 +44,7 @@ class Payment extends Model
     public static function createFromDonation(Donation $donation)
     {
         return tap(new static, function (self $model) use ($donation) {
-            $model->status = 0;
+            $model->status = PaymentStatus::CREATED();
             $model->amount = $donation->amount;
             $donation->payments()->save($model);
         });

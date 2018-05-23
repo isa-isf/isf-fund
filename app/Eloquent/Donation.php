@@ -2,6 +2,7 @@
 
 namespace App\Eloquent;
 
+use App\Enums\DonationType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -42,6 +43,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Donation extends Model
 {
     use SoftDeletes;
+
+    public function setTypeAttribute(DonationType $value)
+    {
+        $this->attributes['type'] = $value;
+    }
+
+    public function getTypeAttribute($value)
+    {
+        if ($value instanceof DonationType) {
+            return $value;
+        }
+
+        return new DonationType($value);
+    }
 
     public function payments(): HasMany
     {
