@@ -27,7 +27,7 @@ const app = new Vue({
       axios
         .post('_/donations', { profile: this.profile, payment: this.payment })
         .then(response => {
-
+          window.location.href = response.data.redirect;
          })
         .catch(error => {
           notyf.alert('發生錯誤');

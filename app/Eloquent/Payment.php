@@ -31,6 +31,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Eloquent\Payment withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Eloquent\Payment withoutTrashed()
  * @mixin \Eloquent
+ * @property string $uuid
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Eloquent\Payment whereUuid($value)
  */
 class Payment extends Model
 {

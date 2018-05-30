@@ -15,4 +15,5 @@ Route::get('/', function () {
     return view('saisenbako');
 });
 
+Route::get('/donations/{uuid}/checkout', 'DonationsController@checkout');
 Route::post('/_/donations', 'DonationsController@store');

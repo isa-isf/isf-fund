@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Eloquent\Donation;
 use App\Eloquent\Payment;
 use App\Enums\DonationType;
+use App\Services\Ecpay;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Uuid;
 
 class DonationsController extends Controller
 {
@@ -25,6 +27,7 @@ class DonationsController extends Controller
         $payment = $request->input('payment');
 
         $donation = new Donation;
+        $donation->uuid = Uuid::uuid4()->toString();
         $donation->name = $profile['name'] ?? '';
         $donation->phone = $profile['phone'] ?? '';
         $donation->email = $profile['email'] ?? '';
@@ -34,9 +37,30 @@ class DonationsController extends Controller
         $donation->message = $payment['message'] ?? '';
         $donation->save();
 
+        return [
+            'redirect' => url('donations/' . $donation->uuid . '/checkout'),
+        ];
+    }
+
+    public function checkout(string $uuid, Ecpay $ecpay)
+    {
+        /** @var \App\Eloquent\Donation|null $donation */
+        $donation = Donation
+            ::query()
+            ->where('uuid', $uuid)
+            ->first();
+
+        abort_if($donation === null, 404);
+
         // create first payment
         $payment = Payment::createFromDonation($donation);
 
-        // @todo: pay out
+        $fields = $ecpay->createFrom($payment);
+
+        return view('auto-form', [
+            'fields' => $fields,
+            'method' => 'POST',
+            'action' => $ecpay->getFullUrl('/Cashier/AioCheckOut/V5'),
+        ]);
     }
 }
