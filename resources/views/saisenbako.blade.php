@@ -105,13 +105,27 @@
                 </div>
 
                 <div class="field">
-                    <label for="payment-type" class="label required">捐款方式</label>
+                    <label for="payment-type" class="label required">贊助方式</label>
 
                     <div class="control">
                         <div class="select">
                             <select id="payment-type" name="payment[type]" v-model="payment.type">
-                                <option value="monthly" selected>每月定期</option>
-                                <option value="one-time">一次性捐款</option>
+                                <option value="{{ \App\Enums\DonationType::MONTHLY()->getValue() }}" selected>每月定期</option>
+                                <option value="{{ \App\Enums\DonationType::ONE_TIME()->getValue() }}" selected>一次性贊助</option>
+                            </select>
+                        </div>
+                    </div> {{-- /.control --}}
+                </div> {{-- /.field --}}
+
+                <div class="field" v-if="payment.type === '{{ \App\Enums\DonationType::MONTHLY()->getValue() }}'">
+                    <label for="payment-count" class="label required">定期付款期數</label>
+
+                    <div class="control">
+                        <div class="select">
+                            <select id="payment-count" name="payment[count]" v-model="payment.count">
+                                <option :value="12">12 個月</option>
+                                <option :value="24">24 個月</option>
+                                <option :value="36" selected>36 個月</option>
                             </select>
                         </div>
                     </div> {{-- /.control --}}

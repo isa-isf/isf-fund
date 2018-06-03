@@ -67,7 +67,7 @@ class Ecpay
             $data['PeriodAmount'] = (int)$payment->amount;
             $data['PeriodType'] = 'M';
             $data['Frequency'] = 1;
-            $data['ExecTimes'] = 99;
+            $data['ExecTimes'] = $payment->donation->count ?: 36;
             $data['PeriodReturnURL'] = url("donations/{$objectId}/period-callback");
         }
 

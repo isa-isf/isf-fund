@@ -19,6 +19,7 @@ class DonationsController extends Controller
             'profile.email' => 'required|email',
             'profile.address' => 'required',
             'payment.type' => 'required|in:' . implode(',', DonationType::values()),
+            'payment.count' => 'required_if:type,' . DonationType::MONTHLY()->getValue() . '|in:12,24,36',
             'payment.amount' => 'required|integer',
             'payment.custom_amount' => 'required_if:amount,0',
         ]);
@@ -33,6 +34,7 @@ class DonationsController extends Controller
         $donation->email = $profile['email'] ?? '';
         $donation->address = $profile['address'] ?? '';
         $donation->type = new DonationType($payment['type'] ?? 'monthly');
+        $donation->count = $payment['count'];
         $donation->amount = $payment['amount'] ?: $payment['custom_amount'];
         $donation->message = $payment['message'] ?? '';
         $donation->save();

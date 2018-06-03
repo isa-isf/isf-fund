@@ -41,6 +41,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Eloquent\Donation whereEmail($value)
  * @property string $uuid
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Eloquent\Donation whereUuid($value)
+ * @property int $count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Eloquent\Donation whereCount($value)
  */
 class Donation extends Model
 {
