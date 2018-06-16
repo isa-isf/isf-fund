@@ -37,7 +37,7 @@ return [
 
     'ecpay' => [
         'merchant_id' => env('ECPAY_MERCHANT_ID', '2000132'),
-        'hash_key' => env('ECPAY_HASH_IV', '5294y06JbISpM5x9'),
-        'hash_iv' => env('ECPAY_HASH_KEY', 'v77hoKGq4kWxNNIS'),
+        'hash_key' => env('ECPAY_HASH_KEY', '5294y06JbISpM5x9'),
+        'hash_iv' => env('ECPAY_HASH_IV', 'v77hoKGq4kWxNNIS'),
     ],
 ];
