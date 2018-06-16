@@ -34,7 +34,7 @@ class DonationsController extends Controller
         $donation->email = $profile['email'] ?? '';
         $donation->address = $profile['address'] ?? '';
         $donation->type = new DonationType($payment['type'] ?? 'monthly');
-        $donation->count = $payment['count'];
+        $donation->count = $request->input('payment.count', 36);
         $donation->amount = $payment['amount'] ?: $payment['custom_amount'];
         $donation->message = $payment['message'] ?? '';
         $donation->save();
