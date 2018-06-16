@@ -71,7 +71,7 @@ class Ecpay
             $data['PeriodReturnURL'] = url("donations/{$objectId}/period-callback");
         }
 
-        $data['CheckMacValue'] = self::generateCheckSum($data);
+        $data['CheckMacValue'] = $this->generateCheckSum($data);
 
         return $data;
     }
