@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "74678026315a8db2c0c23ff7d2eef029",
+    "content-hash": "03d3f1a4fc2750c9290e60537eb26928",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -3266,6 +3266,57 @@
                 }
             ],
             "time": "2016-06-13T19:28:20+00:00"
+        },
+        {
+            "name": "deployer/recipes",
+            "version": "6.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/deployphp/recipes.git",
+                "reference": "b52c5f93d6ad38ab84666dcc740d50472141ab2a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/deployphp/recipes/zipball/b52c5f93d6ad38ab84666dcc740d50472141ab2a",
+                "reference": "b52c5f93d6ad38ab84666dcc740d50472141ab2a",
+                "shasum": ""
+            },
+            "replace": {
+                "deployer/recipes": "self.version"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "autoload.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anton Medvedev",
+                    "email": "anton@medv.io"
+                }
+            ],
+            "description": "3rd party deployer recipes",
+            "homepage": "https://github.com/deployphp/recipes",
+            "keywords": [
+                "cachetool",
+                "cloudflare",
+                "deploy",
+                "deployer",
+                "deployment",
+                "hipchat",
+                "newrelic",
+                "rabbit",
+                "recipes",
+                "sentry",
+                "slack",
+                "yarn"
+            ],
+            "time": "2018-05-30T07:54:18+00:00"
         },
         {
             "name": "doctrine/instantiator",
