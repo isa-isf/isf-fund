@@ -17,3 +17,8 @@ Route::get('/', function () {
 
 Route::get('/donations/{uuid}/checkout', 'DonationsController@checkout');
 Route::post('/_/donations', 'DonationsController@store');
+
+Route::get('/auth0/callback', '\Auth0\Login\Auth0Controller@callback')->name('auth0-callback');
+
+Route::get('/login', 'Auth\Auth0IndexController@login')->name('login');
+Route::post('/logout', 'Auth\Auth0IndexController@logout')->name('logout')->middleware('auth');
