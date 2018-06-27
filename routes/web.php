@@ -24,5 +24,6 @@ Route::get('/login', 'Auth\Auth0IndexController@login')->name('login');
 Route::post('/logout', 'Auth\Auth0IndexController@logout')->name('logout')->middleware('auth');
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('/_/donations', 'DonationsController@index');
     Route::get('/manage/{vueCapture?}', [\App\Http\Controllers\ManageController::class, 'vueHandler'])->where('vueCapture', '.*');
 });

@@ -22,8 +22,13 @@ mix.sass('resources/assets/sass/manage.scss', `${ASSETS_ROOT}/css`);
 
 mix.webpackConfig({
   resolve: {
+    extensions: ['.less'],
     alias: {
       app: path.resolve(__dirname, 'resources/assets/js/'),
     },
+  },
+  output: {
+    publicPath: 'assets/js/',
+    chunkFilename: 'assets/js/manage-[name]-[chunkhash].js',
   },
 });

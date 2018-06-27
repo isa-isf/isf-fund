@@ -11,6 +11,11 @@ use Ramsey\Uuid\Uuid;
 
 class DonationsController extends Controller
 {
+    public function index()
+    {
+        return Donation::all();
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [
