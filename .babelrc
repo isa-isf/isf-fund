@@ -1,0 +1,26 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "modules": false,
+        "target": {
+          "brawsers": ["> 2%"],
+          "uglify": true
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    "transform-object-rest-spread",
+    [
+      "transform-runtime",
+      {
+        "polyfill": false,
+        "helpers": false
+      }
+    ],
+    "transform-vue-jsx",
+    "syntax-dynamic-import"
+  ]
+}

@@ -1,4 +1,5 @@
-let mix = require('laravel-mix');
+const mix = require('laravel-mix');
+const path = require('path');
 
 /*
  |--------------------------------------------------------------------------
@@ -15,3 +16,14 @@ const ASSETS_ROOT = 'public/assets';
 
 mix.js('resources/assets/js/app.js', `${ASSETS_ROOT}/js`)
    .sass('resources/assets/sass/app.scss', `${ASSETS_ROOT}/css`);
+
+mix.js('resources/assets/js/manage.js', `${ASSETS_ROOT}/js`);
+mix.sass('resources/assets/sass/manage.scss', `${ASSETS_ROOT}/css`);
+
+mix.webpackConfig({
+  resolve: {
+    alias: {
+      app: path.resolve(__dirname, 'resources/assets/js/'),
+    },
+  },
+});
