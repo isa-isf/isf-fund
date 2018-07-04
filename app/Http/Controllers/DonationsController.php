@@ -20,7 +20,6 @@ class DonationsController extends Controller
             ->with([
                 'payments' => function (HasMany $query) {
                     $query->orderByDesc('id');
-                    $query->take(3);
                 },
             ])
             ->get();
