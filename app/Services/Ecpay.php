@@ -57,7 +57,7 @@ class Ecpay
             'TotalAmount' => (int)$payment->amount,
             'TradeDesc' => urlencode('雜誌購買/訂閱'),
             'ItemName' => '社會主義者雜誌',
-            'ReturnURL' => url("payments/{$objectId}/callback"),
+            'ReturnURL' => url("payments/{$payment->donation->uuid}/callback"),
             'ChoosePayment' => 'Credit',
             'ClientBackURL' => url('/'),
             // 'OrderResultUrl' => url("donations/{$objectId}/completed"),
@@ -68,7 +68,7 @@ class Ecpay
             $data['PeriodType'] = 'M';
             $data['Frequency'] = 1;
             $data['ExecTimes'] = $payment->donation->count ?: 36;
-            $data['PeriodReturnURL'] = url("donations/{$objectId}/period-callback");
+            $data['PeriodReturnURL'] = url("donations/{$payment->donation->uuid}/period-callback");
         }
 
         $data['CheckMacValue'] = $this->generateCheckSum($data);
