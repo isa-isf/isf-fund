@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 
 class CallbackController extends Controller
 {
-    public function periodCallback(string $uuid, HTTPRequest $reqs, Ecpay $ecpay): string
+    public function period(string $uuid, HTTPRequest $reqs, Ecpay $ecpay): string
     {
         /** @var \App\Eloquent\Donation $donation */
         $donation = Donation::query()->where('uuid', $uuid)->firstOrFail();
@@ -24,7 +24,26 @@ class CallbackController extends Controller
 
         // create new payment
         $payment = Payment::createFromDonation($donation);
-        $payment->status = $reqs->input('status') === 1 ? PaymentStatus::PAID() : PaymentStatus::FAILED();
+        $payment->status = $reqs->input('RtnCode') === 1 ? PaymentStatus::PAID() : PaymentStatus::FAILED();
+        $payment->save();
+
+        return '1|OK';
+    }
+
+    public function first(string $uuid, HTTPRequest $reqs, Ecpay $ecpay): string
+    {
+        /** @var \App\Eloquent\Donation $donation */
+        $donation = Donation::query()->where('uuid', $uuid)->firstOrFail();
+
+        // check mac value
+        $checkMacValue = $ecpay->generateCheckSum($reqs->all());
+        if ($checkMacValue !== $reqs->input('CheckMacValue')) {
+            abort(500, 'Invalid CheckMacValue');
+        }
+
+        /** @var \App\Eloquent\Payment $payment */
+        $payment = $donation->payments()->orderBy('id')->firstOrFail();
+        $payment->status = $reqs->input('RtnCode') === 1 ? PaymentStatus::PAID() : PaymentStatus::FAILED();
         $payment->save();
 
         return '1|OK';

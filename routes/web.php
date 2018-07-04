@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Route::get('/donations/{uuid}/checkout', 'DonationsController@checkout');
 Route::post('/_/donations', 'DonationsController@store');
+Route::post('/donations/{uuid}/first-callback', 'Donations\CallbackController@first');
 Route::post('/donations/{uuid}/period-callback', 'Donations\CallbackController@period');
 
 Route::get('/auth0/callback', '\Auth0\Login\Auth0Controller@callback')->name('auth0-callback');

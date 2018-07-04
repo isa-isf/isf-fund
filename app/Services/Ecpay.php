@@ -57,7 +57,7 @@ class Ecpay
             'TotalAmount' => (int)$payment->amount,
             'TradeDesc' => urlencode('雜誌購買/訂閱'),
             'ItemName' => '社會主義者雜誌',
-            'ReturnURL' => url("payments/{$payment->donation->uuid}/callback"),
+            'ReturnURL' => url("donations/{$payment->donation->uuid}/first-callback"),
             'ChoosePayment' => 'Credit',
             'ClientBackURL' => url('/'),
             // 'OrderResultUrl' => url("donations/{$objectId}/completed"),
