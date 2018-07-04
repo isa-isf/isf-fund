@@ -78,6 +78,7 @@ class Ecpay
 
     public function generateCheckSum(array $data): string
     {
+        $data = array_except($data, 'CheckMacValue');
         ksort($data);
         $str = implode('&', array_map(function ($key, $value) {
             return "{$key}={$value}";

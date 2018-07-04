@@ -43,7 +43,7 @@ class Payment extends Model
         return $this->belongsTo(Donation::class);
     }
 
-    public static function createFromDonation(Donation $donation)
+    public static function createFromDonation(Donation $donation): self
     {
         return tap(new static, function (self $model) use ($donation) {
             $model->status = PaymentStatus::CREATED();
