@@ -64,6 +64,6 @@ class Donation extends Model
 
     public function payments(): HasMany
     {
-        return $this->hasMany(Donation::class);
+        return $this->hasMany(Payment::class);
     }
 }

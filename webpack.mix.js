@@ -28,7 +28,7 @@ mix.webpackConfig({
     },
   },
   output: {
-    publicPath: 'assets/js/',
+    publicPath: '/',
     chunkFilename: 'assets/js/manage-[name]-[chunkhash].js',
   },
 });

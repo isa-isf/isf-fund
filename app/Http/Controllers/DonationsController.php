@@ -6,6 +6,7 @@ use App\Eloquent\Donation;
 use App\Eloquent\Payment;
 use App\Enums\DonationType;
 use App\Services\Ecpay;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
 
@@ -13,7 +14,16 @@ class DonationsController extends Controller
 {
     public function index()
     {
-        return Donation::all();
+        return Donation
+            ::query()
+            ->withCount(['payments'])
+            ->with([
+                'payments' => function (HasMany $query) {
+                    $query->orderByDesc('id');
+                    $query->take(3);
+                },
+            ])
+            ->get();
     }
 
     public function store(Request $request)
