@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $name
  * @property string $phone
  * @property string $address
- * @property int $type
+ * @property DonationType $type
  * @property float $amount
  * @property string $message
  * @property \Carbon\Carbon|null $created_at
