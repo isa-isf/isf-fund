@@ -126,6 +126,7 @@
                                 <option :value="12">12 個月</option>
                                 <option :value="24">24 個月</option>
                                 <option :value="36" selected>36 個月</option>
+                                <option :value="99" selected>99 個月</option>
                             </select>
                         </div>
                     </div> {{-- /.control --}}
