@@ -47,7 +47,7 @@
                 {!! csrf_field() !!}
 
                 <div class="field">
-                    <label for="profile-name" class="label required">姓名</label>
+                    <label for="profile-name" class="label required">姓名 <small class="has-text-danger">*</small></label>
 
                     <div class="control">
                         <input id="profile-name" class="input" type="text" name="profile[name]" placeholder="請填寫您的全名" v-model="profile.name" required>
@@ -55,7 +55,7 @@
                 </div> {{-- /.field --}}
 
                 <div class="field">
-                    <label for="profile-phone" class="label required">電話</label>
+                    <label for="profile-phone" class="label required">電話 <small class="has-text-danger">*</small></label>
 
                     <div class="control">
                         <input id="profile-phone" class="input" type="tel" name="profile[phone]" placeholder="請填寫電話號碼" v-model="profile.phone" required>
@@ -63,7 +63,7 @@
                 </div> {{-- /.field --}}
 
                 <div class="field">
-                    <label for="profile-email" class="label required">電子郵件</label>
+                    <label for="profile-email" class="label required">電子郵件 <small class="has-text-danger">*</small></label>
 
                     <div class="control">
                         <input id="profile-email" class="input" type="email" name="profile[email]" placeholder="請填寫電子郵件位置" v-model="profile.email" required>
@@ -71,7 +71,7 @@
                 </div> {{-- /.field --}}
 
                 <div class="field">
-                    <label for="profile-address" class="label">收件地址</label>
+                    <label for="profile-address" class="label">收件地址 <small class="has-text-danger">*</small></label>
 
                     <div class="control">
                         <input id="profile-address" class="input" type="text" name="profile[address]" placeholder="我們將寄送雜誌給您，請填寫收件地址。" v-model="profile.address">
@@ -79,7 +79,7 @@
                 </div> {{-- /.field --}}
 
                 <div class="field">
-                    <label for="payment-amount" class="label required">捐款金額</label>
+                    <label for="payment-amount" class="label required">捐款金額 <small class="has-text-danger">*</small></label>
 
                     <div class="control">
                         <div class="select">
@@ -97,7 +97,7 @@
                 </div> {{-- /.field --}}
 
                 <div class="field" v-if="payment.amount === '0'">
-                    <label for="payment-amount" class="label">其他金額</label>
+                    <label for="payment-amount" class="label">其他金額 <small class="has-text-danger">*</small></label>
 
                     <div class="control">
                         <input id="payment-amount" class="input" type="text" name="payment[custom_amount]" v-model="payment.custom_amount">
@@ -105,7 +105,7 @@
                 </div>
 
                 <div class="field">
-                    <label for="payment-type" class="label required">贊助方式</label>
+                    <label for="payment-type" class="label required">贊助方式 <small class="has-text-danger">*</small></label>
 
                     <div class="control">
                         <div class="select">
@@ -118,7 +118,7 @@
                 </div> {{-- /.field --}}
 
                 <div class="field is-invisible" v-if="payment.type === '{{ \App\Enums\DonationType::MONTHLY()->getValue() }}'">
-                    <label for="payment-count" class="label required">定期付款期數</label>
+                    <label for="payment-count" class="label required">定期付款期數 <small class="has-text-danger">*</small></label>
 
                     <div class="control">
                         <div class="select">
