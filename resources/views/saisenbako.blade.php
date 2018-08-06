@@ -117,18 +117,6 @@
                     </div> {{-- /.control --}}
                 </div> {{-- /.field --}}
 
-                <div class="field is-invisible" v-if="payment.type === '{{ \App\Enums\DonationType::MONTHLY()->getValue() }}'">
-                    <label for="payment-count" class="label required">定期付款期數 <small class="has-text-danger">*</small></label>
-
-                    <div class="control">
-                        <div class="select">
-                            <select id="payment-count" name="payment[count]" v-model="payment.count">
-                                <option :value="99" selected>99 個月</option>
-                            </select>
-                        </div>
-                    </div> {{-- /.control --}}
-                </div> {{-- /.field --}}
-
                 <div class="field">
                     <label for="payment-message" class="label">留言</label>
 

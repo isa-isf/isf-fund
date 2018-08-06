@@ -13,7 +13,6 @@ const app = new Vue({
       amount: 1000,
       custom_amount: 500,
       type: 'monthly',
-      count: 99,
       message: '',
     },
     form_errors: [],
