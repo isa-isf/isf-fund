@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>捐款支持我們 | 國際社會主義前進 International Socialist Forward</title>
+    <title>贊助支持我們 | 國際社會主義前進 International Socialist Forward</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -20,7 +20,7 @@
     </section>
     <main class="section column">
         <div class="column">
-            <h1 class="title">捐款支持我們</h1>
+            <h1 class="title">贊助支持我們</h1>
             <div class="content">
                 <noscript>
                     <p class="notification is-warning">
@@ -28,8 +28,8 @@
                         請注意：雖然本表單頁面可在無 JavaScript 的環境下正常運作，但金流平台的頁面（我們使用<a href="https://www.ecpay.com.tw/" target="_blank">綠界科技</a>）必須啟用 JavaScript 才可使用。
                     </p>
                 </noscript>
-                <p>《國際社會主義前進》志於建立一個工人階級鬥爭組織。在各樣的群眾運動中，提出我們致勝的綱領與訴求，並參與實際鬥爭以爭取群眾支持。我們需要您的捐款支持！用於抗爭運動與日常會議之中。對於我們的長期發展而言，如有您穩定的捐款與支持，亦能讓我們能有穩定的運作。</p>
-                <p>為了保持政治獨立性，我們不接受財團及政府的資助，所有捐款均來自工人和青年的捐款。有您的支持我們才能鬥爭到底！</p>
+                <p>《國際社會主義前進》志於建立一個工人階級鬥爭組織。在各樣的群眾運動中，提出我們致勝的綱領與訴求，並參與實際鬥爭以爭取群眾支持。我們需要您的贊助支持<span class="has-text-grey-light">*</span>！用於抗爭運動與日常會議之中。對於我們的長期發展而言，如有您穩定的贊助與支持，亦能讓我們能有穩定的運作。</p>
+                <p>為了保持政治獨立性，我們不接受財團及政府的資助，所有贊助均來自工人和青年的贊助。有您的支持我們才能鬥爭到底！</p>
             </div>
 
             <div class="content" v-if="form_errors.length">
@@ -79,7 +79,7 @@
                 </div> {{-- /.field --}}
 
                 <div class="field">
-                    <label for="payment-amount" class="label required">捐款金額 <small class="has-text-danger">*</small></label>
+                    <label for="payment-amount" class="label required">贊助金額 <small class="has-text-danger">*</small></label>
 
                     <div class="control">
                         <div class="select">
@@ -128,6 +128,10 @@
                 <div class="field">
                     <button class="button is-primary" v-if="!submitting">前往付款</button>
                     <button class="button is-primary is-loading" v-else disabled>前往付款</button>
+                </div>
+
+                <div class="field">
+                    <p class="has-text-grey-light">* 恕無法提供收據</p>
                 </div>
             </form>
         </div> {{-- /.column --}}
