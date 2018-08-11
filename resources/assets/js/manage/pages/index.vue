@@ -2,7 +2,7 @@
     <Content class="content-wrapper">
         <Row>
             <Col span="16">
-                <iTable :columns="columns" :data="data" :loading="loading" />
+                <iTable stripe :columns="columns" :data="data" :loading="loading" />
             </Col>
         </Row>
     </Content>
