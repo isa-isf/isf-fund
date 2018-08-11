@@ -27,5 +27,6 @@ Route::post('/logout', 'Auth\Auth0IndexController@logout')->name('logout')->midd
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/_/donations', 'DonationsController@index');
+    Route::put('/_/donations/{id}/archive', 'DonationsController@archive');
     Route::get('/manage/{vueCapture?}', [\App\Http\Controllers\ManageController::class, 'vueHandler'])->where('vueCapture', '.*');
 });

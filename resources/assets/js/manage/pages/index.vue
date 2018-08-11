@@ -33,6 +33,18 @@
                                 </li>
                             </ul>
                         </FormItem>
+                        <FormItem label="操作">
+                            <ButtonGroup>
+                                <iButton
+                                    type="warning"
+                                    icon="ios-archive"
+                                    @click="archive(donation.id)"
+                                    :loading="loading"
+                                >
+                                    封存
+                                </iButton>
+                            </ButtonGroup>
+                        </FormItem>
                     </iForm>
                 </Card>
             </Col>
@@ -144,6 +156,21 @@ export default {
     },
     showData(donation) {
       this.$set(this, 'donation', clone(donation));
+    },
+    archive(id) {
+      this.$Modal.confirm({
+        title: '確定要封存？',
+        content: '確定要將所選的這筆項目封存嗎？',
+        loading: true,
+        onOk: async () => {
+          this.loading = true;
+          await axios.put(`/_/donations/${id}/archive`);
+          await this.fetchData();
+          this.$Modal.remove();
+          this.$set(this, 'donation', { auto: null });
+          this.loading = false;
+        }
+      });
     },
   },
   mounted() {

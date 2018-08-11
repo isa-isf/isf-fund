@@ -43,6 +43,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Eloquent\Donation whereUuid($value)
  * @property int $count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Eloquent\Donation whereCount($value)
+ * @property string|null $archive_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Eloquent\Donation whereArchiveAt($value)
  */
 class Donation extends Model
 {

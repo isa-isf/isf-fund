@@ -6,6 +6,7 @@ use App\Eloquent\Donation;
 use App\Eloquent\Payment;
 use App\Enums\DonationType;
 use App\Services\Ecpay;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
@@ -22,6 +23,7 @@ class DonationsController extends Controller
                     $query->orderByDesc('id');
                 },
             ])
+            ->whereNull('archive_at')
             ->get();
     }
 
@@ -77,5 +79,13 @@ class DonationsController extends Controller
             'method' => 'POST',
             'action' => $ecpay->getFullUrl('/Cashier/AioCheckOut/V5'),
         ]);
+    }
+
+    public function archive(int $id)
+    {
+        $donation = Donation::query()->findOrFail($id);
+
+        $donation->archive_at = Carbon::now();
+        $donation->save();
     }
 }
