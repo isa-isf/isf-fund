@@ -71,6 +71,8 @@ export default {
                   params
                     .row
                     .payments
+                    .slice(-3)
+                    .reverse()
                     .map(payment => (
                       <li>
                         { payment.created_at } -
