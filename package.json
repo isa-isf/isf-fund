@@ -29,6 +29,7 @@
         "normalize.css": "^8.0.0",
         "notyf": "^2.0.1",
         "number-format.js": "^1.1.11",
+        "tachyons": "^4.10",
         "vue-router": "^3.0.1"
     }
 }

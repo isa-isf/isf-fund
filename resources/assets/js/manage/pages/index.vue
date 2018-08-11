@@ -1,8 +1,40 @@
 <template>
     <Content class="content-wrapper">
         <Row>
-            <Col span="16">
-                <iTable stripe :columns="columns" :data="data" :loading="loading" />
+            <Col span="16" class="ph2">
+                <iTable
+                    stripe
+                    :columns="columns"
+                    :data="data"
+                    :loading="loading"
+                    @on-row-click="showData"
+                />
+            </Col>
+            <Col span="8" class="ph2">
+                <Card v-if="donation.id">
+                    <p slot="title">
+                        #{{ donation.id }}
+                        {{ donation.name }}
+                    </p>
+                    <iForm>
+                        <FormItem label="地址">
+                            <p>{{ donation.address }}</p>
+                        </FormItem>
+                        <FormItem label="留言">
+                            <p>{{ donation.message }}</p>
+                        </FormItem>
+                        <FormItem label="付款歷史">
+                            <ul class="pl5">
+                                <li v-for="payment in donation.payments" :key="payment.id">
+                                    {{ payment.created_at }} -
+                                    {{
+                                      ({ 100: '未付款', 101: '成功', 999: '授權失敗' })[payment.status]
+                                    }}
+                                </li>
+                            </ul>
+                        </FormItem>
+                    </iForm>
+                </Card>
             </Col>
         </Row>
     </Content>
@@ -11,11 +43,16 @@
 <script>
 import axios from 'axios';
 import formatter from 'number-format.js';
+import clone from '../../utils/clone';
 
 export default {
   name: 'index',
   data() {
     return {
+      donation: {
+        id: null,
+      },
+
       data: [],
       columns: [
         {
@@ -104,6 +141,9 @@ export default {
           this.$set(this, 'data', resp.data);
         });
       this.loading = false;
+    },
+    showData(donation) {
+      this.$set(this, 'donation', clone(donation));
     },
   },
   mounted() {
