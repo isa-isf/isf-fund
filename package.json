@@ -25,7 +25,7 @@
         "babel-plugin-syntax-jsx": "^6.18.0",
         "babel-plugin-transform-vue-jsx": "~3.3",
         "bulma": "^0.7.1",
-        "iview": "^2.14.3",
+        "iview": "^3.0",
         "normalize.css": "^8.0.0",
         "notyf": "^2.0.1",
         "number-format.js": "^1.1.11",
