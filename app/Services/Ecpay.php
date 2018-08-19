@@ -29,11 +29,11 @@ class Ecpay
 
     /** @var \GuzzleHttp\Client */
     protected $guzzle;
-    
+
     protected $merchant_id;
-    
+
     protected $hash_key;
-    
+
     protected $hash_iv;
 
     public function __construct(GuzzleClient $guzzle)
@@ -79,6 +79,9 @@ class Ecpay
     public function generateCheckSum(array $data): string
     {
         $data = array_except($data, 'CheckMacValue');
+        $data = array_filter($data, function ($i) {
+            return $i !== null;
+        });
         ksort($data);
         $str = implode('&', array_map(function ($key, $value) {
             return "{$key}={$value}";
