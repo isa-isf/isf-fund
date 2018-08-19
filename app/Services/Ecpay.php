@@ -80,12 +80,9 @@ class Ecpay
     public function generateCheckSum(array $data): string
     {
         $data = array_except($data, 'CheckMacValue');
-        $data = array_filter($data, function ($i) {
-            return $i !== null;
-        });
         ksort($data);
         $str = implode('&', array_map(function ($key, $value) {
-            return "{$key}={$value}";
+            return "{$key}=" . ($value ?? '');
         }, array_keys($data), array_values($data)));
         $str = 'HashKey=' . $this->hash_key . '&' . $str;
         $str .= '&HashIV=' . $this->hash_iv;
