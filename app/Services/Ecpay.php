@@ -20,6 +20,7 @@ class Ecpay
         '%2a' => '*',
         '%28' => '(',
         '%29' => ')',
+        '%20' => ' ',
     ];
 
     protected const STAGE_MERCHANT_IDS = [
