@@ -8,6 +8,7 @@ use App\Enums\PaymentStatus;
 use App\Services\Ecpay;
 use Illuminate\Http\Request as HTTPRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
 
 class CallbackController extends Controller
 {
@@ -19,6 +20,7 @@ class CallbackController extends Controller
         // check mac value
         $checkMacValue = $ecpay->generateCheckSum($reqs->all());
         if ($checkMacValue !== $reqs->input('CheckMacValue')) {
+            Log::critical('Invalid CheckMacValue', ['requests' => $reqs->all(), 'mac' => $checkMacValue]);
             abort(500, 'Invalid CheckMacValue');
         }
 
@@ -38,6 +40,7 @@ class CallbackController extends Controller
         // check mac value
         $checkMacValue = $ecpay->generateCheckSum($reqs->all());
         if ($checkMacValue !== $reqs->input('CheckMacValue')) {
+            Log::critical('Invalid CheckMacValue', ['requests' => $reqs->all(), 'mac' => $checkMacValue]);
             abort(500, 'Invalid CheckMacValue');
         }
 
