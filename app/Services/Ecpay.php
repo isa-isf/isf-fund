@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Eloquent\Donation;
 use App\Eloquent\Payment;
 use App\Enums\DonationType;
 use GuzzleHttp\Client as GuzzleClient;
@@ -45,7 +44,7 @@ class Ecpay
         $this->hash_iv = config('services.ecpay.hash_iv');
     }
 
-    public function createFrom(Payment $payment)
+    public function createFrom(Payment $payment): array
     {
         $objectId = str_before($payment->donation->uuid, '-');
         $objectId .= str_pad($payment->donation_id, 4, '0', STR_PAD_LEFT);
@@ -93,7 +92,7 @@ class Ecpay
 
     public function getFullUrl(string $path): string
     {
-        if (in_array($this->merchant_id, self::STAGE_MERCHANT_IDS, true)) {
+        if (\in_array($this->merchant_id, self::STAGE_MERCHANT_IDS, true)) {
             return "https://payment-stage.ecpay.com.tw{$path}";
         }
 

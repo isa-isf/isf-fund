@@ -27,7 +27,10 @@ class DonationsController extends Controller
             ->get();
     }
 
-    public function store(Request $request)
+    /**
+     * @throws \Exception
+     */
+    public function store(Request $request): array
     {
         $this->validate($request, [
             'profile.name' => 'required',
@@ -81,8 +84,9 @@ class DonationsController extends Controller
         ]);
     }
 
-    public function archive(int $id)
+    public function archive(int $id): void
     {
+        /** @var \App\Eloquent\Donation $donation */
         $donation = Donation::query()->findOrFail($id);
 
         $donation->archive_at = Carbon::now();
