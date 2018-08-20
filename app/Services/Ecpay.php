@@ -60,6 +60,7 @@ class Ecpay
             'ReturnURL' => url("donations/{$payment->donation->uuid}/first-callback"),
             'ChoosePayment' => 'Credit',
             'ClientBackURL' => url('/'),
+            'EncryptType' => 1,
             // 'OrderResultUrl' => url("donations/{$objectId}/completed"),
         ];
 
@@ -87,7 +88,18 @@ class Ecpay
         $str .= '&HashIV=' . $this->hash_iv;
         $str = strtolower(urlencode($str));
         $str = str_replace(array_keys(self::DOT_NET_URL_ENCODE_TABLE), array_values(self::DOT_NET_URL_ENCODE_TABLE), $str);
-        return strtoupper(hash('sha256', $str));
+
+        switch (optional($data)['EncryptType']) {
+            case 1:
+                $hash = hash('sha256', $str);
+                break;
+            default:
+            case 0:
+                $hash = md5($str);
+                break;
+        }
+
+        return strtoupper($hash);
     }
 
     public function getFullUrl(string $path): string
