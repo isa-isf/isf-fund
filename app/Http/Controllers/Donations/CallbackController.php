@@ -28,7 +28,8 @@ class CallbackController extends Controller
             })->firstOrFail();
 
         // check mac value
-        $checkMacValue = $ecpay->generateCheckSum($reqs->all());
+        $algorithm = \strlen($reqs->input('CheckMacValue')) === 32 ? Ecpay::ENCRYPT_TYPE_MD5 : Ecpay::ENCRYPT_TYPE_SHA256;
+        $checkMacValue = $ecpay->generateCheckSum($reqs->all(), $algorithm);
         if ($checkMacValue !== $reqs->input('CheckMacValue')) {
             Log::critical('Invalid CheckMacValue', ['requests' => $reqs->all(), 'mac' => $checkMacValue]);
             abort(500, 'Invalid CheckMacValue');
@@ -48,7 +49,8 @@ class CallbackController extends Controller
         $donation = Donation::query()->where('uuid', $uuid)->firstOrFail();
 
         // check mac value
-        $checkMacValue = $ecpay->generateCheckSum($reqs->all());
+        $algorithm = \strlen($reqs->input('CheckMacValue')) === 32 ? Ecpay::ENCRYPT_TYPE_MD5 : Ecpay::ENCRYPT_TYPE_SHA256;
+        $checkMacValue = $ecpay->generateCheckSum($reqs->all(), $algorithm);
         if ($checkMacValue !== $reqs->input('CheckMacValue')) {
             Log::critical('Invalid CheckMacValue', ['requests' => $reqs->all(), 'mac' => $checkMacValue]);
             abort(500, 'Invalid CheckMacValue');

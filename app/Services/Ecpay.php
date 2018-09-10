@@ -11,6 +11,9 @@ use GuzzleHttp\Client as GuzzleClient;
  */
 class Ecpay
 {
+    public const ENCRYPT_TYPE_MD5 = '0';
+    public const ENCRYPT_TYPE_SHA256 = '1';
+
     protected const DOT_NET_URL_ENCODE_TABLE = [
         '%2d' => '-',
         '%5f' => '_',
@@ -77,7 +80,7 @@ class Ecpay
         return $data;
     }
 
-    public function generateCheckSum(array $data): string
+    public function generateCheckSum(array $data, string $type = null): string
     {
         $data = array_except($data, 'CheckMacValue');
         ksort($data);
@@ -89,7 +92,7 @@ class Ecpay
         $str = strtolower(urlencode($str));
         $str = str_replace(array_keys(self::DOT_NET_URL_ENCODE_TABLE), array_values(self::DOT_NET_URL_ENCODE_TABLE), $str);
 
-        switch ('' . optional($data)['EncryptType']) {
+        switch ('' . ($type ?? optional($data)['EncryptType'])) {
             case '0':
                 $hash = md5($str);
                 break;
