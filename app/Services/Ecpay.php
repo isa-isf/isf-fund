@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Eloquent\Payment;
 use App\Enums\DonationType;
 use GuzzleHttp\Client as GuzzleClient;
+use Illuminate\Support\Str;
 
 /**
  * Class Ecpay
@@ -49,7 +50,7 @@ class Ecpay
 
     public function createFrom(Payment $payment): array
     {
-        $objectId = str_before($payment->donation->uuid, '-');
+        $objectId = Str::before($payment->donation->uuid, '-');
         $objectId .= str_pad($payment->donation_id, 4, '0', STR_PAD_LEFT);
         $objectId .= str_pad($payment->id, 4, '0', STR_PAD_LEFT);
         $data = [
