@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-class ManageController
+class FrontpageController
 {
     public function __invoke()
     {
-        return view('manage');
+        return view('saisenbako');
     }
 }
