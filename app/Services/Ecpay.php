@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Eloquent\Payment;
 use App\Enums\DonationType;
 use GuzzleHttp\Client as GuzzleClient;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 /**
@@ -83,7 +84,7 @@ class Ecpay
 
     public function generateCheckSum(array $data, string $type = null): string
     {
-        $data = array_except($data, 'CheckMacValue');
+        $data = Arr::except($data, 'CheckMacValue');
         ksort($data);
         $str = implode('&', array_map(function ($key, $value) {
             return "{$key}=" . ($value ?? '');

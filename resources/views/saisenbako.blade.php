@@ -1,143 +1,222 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
-    <title>贊助支持我們 | 國際社會主義前進 International Socialist Forward</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>贊助支持我們 | 國際社會主義前進 International Socialist Forward</title>
 
     <link rel="stylesheet" href="{{ mix('assets/css/app.css') }}">
 </head>
 <body>
-<div id="app" class="columns is-fullheight">
-    <section class="column is-two-fifths is-primary">
-        <div class="section">
-            <div class="has-text-right">
-                <h2 class="title">國際社會主義前進</h2>
-                <h3 class="subtitle">International Socialist Forward</h3>
-            </div>
-        </div>
+<div id="app" class=" min-h-screen flex flex-col md:flex-row">
+    <section class="lg:w-2/5 py-10 px-8 bg-red-600 text-white lg:text-right">
+        <h2 class="text-4xl">國際社會主義前進</h2>
+        <h3 class="text-md">International Socialist Forward</h3>
     </section>
-    <main class="section column">
-        <div class="column">
-            <h1 class="title">贊助支持我們</h1>
-            <div class="content">
+    <main class="lg:w-3/5 py-10 px-8 flex flex-col">
+        <h1 class="mb-2 text-4xl font-semibold">贊助支持我們</h1>
+        <div class="mb-4">
+            <noscript>
+                <p class="mb-2 py-4 px-6 bg-yellow-400 rounded">
+                    您的瀏覽器似乎未啟用 JavaScript。<br>
+                    請注意：雖然本表單頁面可在無 JavaScript 的環境下正常運作，但金流平台的頁面（我們使用<a href="https://www.ecpay.com.tw/" target="_blank">綠界科技</a>）必須啟用 JavaScript 才可使用。
+                </p>
+            </noscript>
+            <p>《國際社會主義前進》志於建立一個工人階級鬥爭組織。在各樣的群眾運動中，提出我們致勝的綱領與訴求，並參與實際鬥爭以爭取群眾支持。我們需要您的贊助支持 <span class="text-gray-500 text-xs">[* 註]</span>！用於抗爭運動與日常會議之中。對於我們的長期發展而言，如有您穩定的贊助與支持，亦能讓我們能有穩定的運作。</p>
+            <p>為了保持政治獨立性，我們不接受財團及政府的資助，所有贊助均來自工人和青年的贊助。有您的支持我們才能鬥爭到底！</p>
+        </div>
+
+        <template v-if="form_errors.length">
+            <div class="notification is-danger">
+                <strong>您填寫的資料存在錯誤：</strong>
+                <ul>
+                    <template v-for="error in form_errors">
+                        <li v-for="message in error">@{{ message }}</li>
+                    </template>
+                </ul>
+            </div>
+        </template>
+
+        <form action="{{ url('payments') }}" method="post" @submit.prevent="submit">
+            @csrf
+
+            <div class="flex flex-col mb-4">
+                <label for="profile-name" class="mb-2">姓名 <small class="text-red-400">*</small></label>
+
+                <input
+                    id="profile-name"
+                    class="px-3 py-2 border border-gray-400 focus:border-blue-700 rounded bg-white"
+                    type="text"
+                    name="profile[name]"
+                    placeholder="請填寫您的全名或稱呼"
+                    v-model="profile.name"
+                    required
+                >
+            </div>
+
+            <div class="flex flex-col mb-4">
+                <label for="profile-name" class="mb-2">電話 <small class="text-red-400">*</small></label>
+
+                <input
+                    id="profile-phone"
+                    class="px-3 py-2 border border-gray-400 focus:border-blue-700 rounded bg-white"
+                    type="tel"
+                    name="profile[phone]"
+                    placeholder="請填寫電話號碼"
+                    v-model="profile.phone"
+                    required
+                >
+            </div>
+
+            <div class="flex flex-col mb-4">
+                <label for="profile-name" class="mb-2">電子郵件 <small class="text-red-400">*</small></label>
+
+                <input
+                    id="profile-email"
+                    class="px-3 py-2 border border-gray-400 focus:border-blue-700 rounded bg-white"
+                    type="email"
+                    name="profile[email]"
+                    placeholder="請填寫電子郵件"
+                    v-model="profile.email"
+                    required
+                >
+            </div>
+
+            <div class="flex flex-col mb-4">
+                <label for="profile-name" class="mb-2">收件地址 <small class="text-red-400">*</small></label>
+
+                <input
+                    id="profile-address"
+                    class="px-3 py-2 border border-gray-400 focus:border-blue-700 rounded bg-white"
+                    type="text"
+                    name="profile[address]"
+                    placeholder="我們將寄送雜誌給您，請填寫收件地址"
+                    v-model="profile.address"
+                    required
+                >
+            </div>
+
+            <noscript>
+                <div class="flex flex-col mb-4">
+                    <label for="payment-amount" class="mb-2">贊助金額 <small class="text-red-400">*</small></label>
+
+                    <input
+                        id="payment-amount"
+                        class="w-64 px-3 py-2 border border-gray-400 focus:border-blue-700 rounded bg-white"
+                        type="number"
+                        name="payment[amount]"
+                        placeholder="請填寫贊助金額"
+                        v-model="payment.amount"
+                        value="500"
+                        required
+                    >
+                </div>
+            </noscript>
+
+            <template v-if="true">
+                <div class="flex flex-col mb-4">
+                    <label for="payment-amount" class="mb-2">贊助金額 <small class="text-red-400">*</small></label>
+
+                    <div class="inline-block relative w-64">
+                        <select
+                            id="payment-amount"
+                            class="block appearance-none w-full px-3 py-2 pr-8 border border-gray-400 rounded focus:border-blue-700 bg-white"
+                            name="payment[amount]"
+                            v-model="payment.amount"
+                        >
+                            <option value="500">NT$500</option>
+                            <option value="1000" selected>NT$1,000</option>
+                            <option value="2000">NT$2,000</option>
+                            <option value="3000">NT$3,000</option>
+                            <option value="4000">NT$4,000</option>
+                            <option value="5000">NT$5,000</option>
+                            <option value="0">其它金額</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col mb-4" v-if="payment.amount === '0'">
+                    <label for="payment-amount" class="mb-2">其他金額 <small class="text-red-400">*</small></label>
+
+                    <input
+                        id="payment-amount"
+                        class="w-64 px-3 py-2 border border-gray-400 focus:border-blue-700 rounded bg-white"
+                        type="number"
+                        name="payment[amount]"
+                        placeholder="請填寫贊助金額"
+                        v-model="payment.custom_amount"
+                        value="500"
+                        required
+                    >
+                </div>
+            </template>
+
+            <div class="flex flex-col mb-4">
+                <label for="payment-type" class="mb-2">贊助方式 <small class="text-red-400">*</small></label>
+
+                <div class="inline-block relative w-64">
+                    <select
+                        id="payment-type"
+                        class="block appearance-none w-full px-3 py-2 pr-8 border border-gray-400 rounded focus:border-blue-700 bg-white"
+                        name="payment[type]"
+                        v-model="payment.type"
+                    >
+                        <option value="{{ \App\Enums\DonationType::MONTHLY()->getValue() }}" selected>每月定期</option>
+                        <option value="{{ \App\Enums\DonationType::ONE_TIME()->getValue() }}" selected>一次性贊助</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col mb-4">
+                <label for="payment-message" class="mb-2">留言</label>
+
+                <textarea
+                    id="payment-message"
+                    class="px-3 py-2 border border-gray-400 focus:border-blue-700 rounded bg-white"
+                    name="payment[message]"
+                    placeholder="您可在此留下留言"
+                    v-model="payment.message"
+                ></textarea>
+            </div>
+
+            <div class="mb-4">
                 <noscript>
-                    <p class="notification is-warning">
-                        您的瀏覽器似乎未啟用或不支援 JavaScript。<br>
-                        請注意：雖然本表單頁面可在無 JavaScript 的環境下正常運作，但金流平台的頁面（我們使用<a href="https://www.ecpay.com.tw/" target="_blank">綠界科技</a>）必須啟用 JavaScript 才可使用。
-                    </p>
+                    <button
+                        type="submit"
+                        class="px-3 py-2 rounded bg-red-600 hover:bg-red-500 text-white"
+                    >前往付款</button>
                 </noscript>
-                <p>《國際社會主義前進》志於建立一個工人階級鬥爭組織。在各樣的群眾運動中，提出我們致勝的綱領與訴求，並參與實際鬥爭以爭取群眾支持。我們需要您的贊助支持<span class="has-text-grey-light">*</span>！用於抗爭運動與日常會議之中。對於我們的長期發展而言，如有您穩定的贊助與支持，亦能讓我們能有穩定的運作。</p>
-                <p>為了保持政治獨立性，我們不接受財團及政府的資助，所有贊助均來自工人和青年的贊助。有您的支持我們才能鬥爭到底！</p>
+                <template v-if="true">
+                    <button
+                        type="submit"
+                        class="px-3 py-2 rounded bg-red-600 hover:bg-red-500 text-white"
+                        v-if="!submitting"
+                    >前往付款</button>
+                    <button
+                        type="submit"
+                        class="px-3 py-2 rounded bg-red-500 text-white"
+                        v-else
+                        disabled
+                    >前往付款</button>
+                </template>
             </div>
 
-            <div class="content" v-if="form_errors.length">
-                <div class="notification is-danger">
-                    <strong>您填寫的資料存在錯誤：</strong>
-                    <ul>
-                        <template v-for="error in form_errors">
-                            <li v-for="message in error">@{{ message }}</li>
-                        </template>
-                    </ul>
-                </div>
+            <div class="field">
+                <p class="text-gray-500">* 恕無法提供收據</p>
             </div>
-
-            <form action="{{ url('payments') }}" method="post" @submit.prevent="submit">
-                {!! csrf_field() !!}
-
-                <div class="field">
-                    <label for="profile-name" class="label required">姓名 <small class="has-text-danger">*</small></label>
-
-                    <div class="control">
-                        <input id="profile-name" class="input" type="text" name="profile[name]" placeholder="請填寫您的全名" v-model="profile.name" required>
-                    </div>
-                </div> {{-- /.field --}}
-
-                <div class="field">
-                    <label for="profile-phone" class="label required">電話 <small class="has-text-danger">*</small></label>
-
-                    <div class="control">
-                        <input id="profile-phone" class="input" type="tel" name="profile[phone]" placeholder="請填寫電話號碼" v-model="profile.phone" required>
-                    </div>
-                </div> {{-- /.field --}}
-
-                <div class="field">
-                    <label for="profile-email" class="label required">電子郵件 <small class="has-text-danger">*</small></label>
-
-                    <div class="control">
-                        <input id="profile-email" class="input" type="email" name="profile[email]" placeholder="請填寫電子郵件位置" v-model="profile.email" required>
-                    </div>
-                </div> {{-- /.field --}}
-
-                <div class="field">
-                    <label for="profile-address" class="label">收件地址 <small class="has-text-danger">*</small></label>
-
-                    <div class="control">
-                        <input id="profile-address" class="input" type="text" name="profile[address]" placeholder="我們將寄送雜誌給您，請填寫收件地址。" v-model="profile.address">
-                    </div>
-                </div> {{-- /.field --}}
-
-                <div class="field">
-                    <label for="payment-amount" class="label required">贊助金額 <small class="has-text-danger">*</small></label>
-
-                    <div class="control">
-                        <div class="select">
-                            <select id="payment-amount" name="profile[amount]" v-model="payment.amount">
-                                <option value="500">NT$500</option>
-                                <option value="1000" selected>NT$1,000</option>
-                                <option value="2000">NT$2,000</option>
-                                <option value="3000">NT$3,000</option>
-                                <option value="4000">NT$4,000</option>
-                                <option value="5000">NT$5,000</option>
-                                <option value="0">其它金額</option>
-                            </select>
-                        </div>
-                    </div>
-                </div> {{-- /.field --}}
-
-                <div class="field" v-if="payment.amount === '0'">
-                    <label for="payment-amount" class="label">其他金額 <small class="has-text-danger">*</small></label>
-
-                    <div class="control">
-                        <input id="payment-amount" class="input" type="text" name="payment[custom_amount]" v-model="payment.custom_amount">
-                    </div>
-                </div>
-
-                <div class="field">
-                    <label for="payment-type" class="label required">贊助方式 <small class="has-text-danger">*</small></label>
-
-                    <div class="control">
-                        <div class="select">
-                            <select id="payment-type" name="payment[type]" v-model="payment.type">
-                                <option value="{{ \App\Enums\DonationType::MONTHLY()->getValue() }}" selected>每月定期</option>
-                                <option value="{{ \App\Enums\DonationType::ONE_TIME()->getValue() }}" selected>一次性贊助</option>
-                            </select>
-                        </div>
-                    </div> {{-- /.control --}}
-                </div> {{-- /.field --}}
-
-                <div class="field">
-                    <label for="payment-message" class="label">留言</label>
-
-                    <div class="control">
-                        <textarea id="payment-message" class="textarea" name="payment[message]" placeholder="您可在此留下留言" v-model="payment.message"></textarea>
-                    </div>
-                </div> {{-- /.field --}}
-
-                <div class="field">
-                    <button class="button is-primary" v-if="!submitting">前往付款</button>
-                    <button class="button is-primary is-loading" v-else disabled>前往付款</button>
-                </div>
-
-                <div class="field">
-                    <p class="has-text-grey-light">* 恕無法提供收據</p>
-                </div>
-            </form>
-        </div> {{-- /.column --}}
+        </form>
     </main>
 </div> {{-- /#app --}}
 
 <script src="{{ mix('assets/js/app.js') }}"></script>
+
 </body>
 </html>

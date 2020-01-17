@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import iView from 'iview';
 import App from './manage/layouts/App.vue';
 
 
@@ -12,7 +11,6 @@ const router = new VueRouter({
 });
 
 Vue.use(VueRouter);
-Vue.use(iView);
 
 new Vue({
   el: '#app',

@@ -65,14 +65,10 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'auth0',
-        ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+         'users' => [
+             'driver' => 'database',
+             'table' => 'users',
+         ],
     ],
 
     /*

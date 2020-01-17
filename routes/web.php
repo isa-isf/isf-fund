@@ -20,11 +20,6 @@ Route::post('/_/donations', 'DonationsController@store');
 Route::post('/donations/{uuid}/first-callback', 'Donations\CallbackController@first');
 Route::post('/donations/{uuid}/period-callback', 'Donations\CallbackController@period');
 
-Route::get('/auth0/callback', '\Auth0\Login\Auth0Controller@callback')->name('auth0-callback');
-
-Route::get('/login', 'Auth\Auth0IndexController@login')->name('login');
-Route::post('/logout', 'Auth\Auth0IndexController@logout')->name('logout')->middleware('auth');
-
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/_/donations', 'DonationsController@index');
     Route::put('/_/donations/{id}/archive', 'DonationsController@archive');

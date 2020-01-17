@@ -14,11 +14,8 @@ const path = require('path');
 
 const ASSETS_ROOT = 'public/assets';
 
-mix.js('resources/js/app.js', `${ASSETS_ROOT}/js`)
-   .sass('resources/sass/app.scss', `${ASSETS_ROOT}/css`);
-
-mix.js('resources/js/manage.js', `${ASSETS_ROOT}/js`);
-mix.sass('resources/sass/manage.scss', `${ASSETS_ROOT}/css`);
+mix.js('resources/js/app.js', 'public/assets/js')
+mix.postCss('resources/css/app.css', 'public/assets/css', [require('tailwindcss')])
 
 mix.webpackConfig({
   resolve: {
