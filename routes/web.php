@@ -13,7 +13,7 @@ use App\Http\Controllers as C;
 |
 */
 
-Route::get('/', class_basename(C\FrontpageController::class));
+Route::get('/', [C\FrontpageController::class, '__invoke']);
 
 Route::get('/donations/{uuid}/checkout', [C\DonationsController::class, 'checkout']);
 Route::post('/_/donations', [C\DonationsController::class, 'store']);
@@ -26,4 +26,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/manage/{vueCapture?}', class_basename(C\ManageController::class))->where('vueCapture', '.*');
 });
 
-Auth::routes();
+Auth::routes([
+    'register' => false,
+    'reset' => false,
+    'confirm' => false,
+    'verify' => false,
+]);
