@@ -25,3 +25,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/_/donations/{id}/archive', [C\DonationsController::class, 'archive']);
     Route::get('/manage/{vueCapture?}', class_basename(C\ManageController::class))->where('vueCapture', '.*');
 });
+
+Auth::routes();

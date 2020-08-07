@@ -11,6 +11,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "7.*",
         "laravel/tinker": "^2.4",
+        "laravel/ui": "^2.1",
         "laravel/vapor-core": "^2.8",
         "myclabs/php-enum": "^1.7",
         "ramsey/uuid": "^4.1",
