@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Eloquent\Donation;
-use App\Eloquent\Payment;
+use App\Models\Donation;
+use App\Models\Payment;
 use App\Enums\DonationType;
 use App\Services\Ecpay;
 use Carbon\Carbon;
@@ -64,7 +64,7 @@ class DonationsController extends Controller
 
     public function checkout(string $uuid, Ecpay $ecpay)
     {
-        /** @var \App\Eloquent\Donation|null $donation */
+        /** @var \App\Models\Donation|null $donation */
         $donation = Donation
             ::query()
             ->where('uuid', $uuid)
@@ -86,7 +86,7 @@ class DonationsController extends Controller
 
     public function archive(int $id): void
     {
-        /** @var \App\Eloquent\Donation $donation */
+        /** @var \App\Models\Donation $donation */
         $donation = Donation::query()->findOrFail($id);
 
         $donation->archive_at = Carbon::now();

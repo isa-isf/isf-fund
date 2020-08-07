@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Donations;
 
-use App\Eloquent\Donation;
-use App\Eloquent\Payment;
+use App\Models\Donation;
+use App\Models\Payment;
 use App\Enums\PaymentStatus;
 use App\Services\Ecpay;
 use Illuminate\Database\Eloquent\Builder;
@@ -15,7 +15,7 @@ class CallbackController extends Controller
 {
     public function period(string $uuid, HTTPRequest $reqs, Ecpay $ecpay): string
     {
-        /** @var \App\Eloquent\Donation $donation */
+        /** @var \App\Models\Donation $donation */
         $donation = Donation
             ::query()
             ->select('donations.*')
@@ -45,7 +45,7 @@ class CallbackController extends Controller
 
     public function first(string $uuid, HTTPRequest $reqs, Ecpay $ecpay): string
     {
-        /** @var \App\Eloquent\Donation $donation */
+        /** @var \App\Models\Donation $donation */
         $donation = Donation::query()->where('uuid', $uuid)->firstOrFail();
 
         // check mac value
@@ -56,7 +56,7 @@ class CallbackController extends Controller
             abort(500, 'Invalid CheckMacValue');
         }
 
-        /** @var \App\Eloquent\Payment $payment */
+        /** @var \App\Models\Payment $payment */
         $payment = $donation->payments()->orderBy('id')->firstOrFail();
         $payment->status = $reqs->input('RtnCode') === '1' ? PaymentStatus::PAID() : PaymentStatus::FAILED();
         $payment->save();

@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Eloquent\Payment;
+use App\Models\Payment;
 use App\Enums\DonationType;
 use GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Support\Arr;
