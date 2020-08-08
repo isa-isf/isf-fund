@@ -2,8 +2,15 @@
 
 @section('content')
 <div class="container mx-auto px-6">
-    <div class="flex justify-center">
+    <div class="flex flex-col items-center">
+        @if(session('message'))
+            <div class="mb-6 px-4 py-2 rounded bg-green-500 text-white" role="alert">
+                {{ session('message') }}
+            </div>
+        @endif
+
         <div class="md:w-2/3">
+
             <x-card title="登入">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf

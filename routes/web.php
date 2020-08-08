@@ -32,3 +32,8 @@ Auth::routes([
     'confirm' => false,
     'verify' => false,
 ]);
+
+Route::group(['middleware' => ['signed']], static function () {
+    Route::get('/users/{user}/password-setup', [C\Auth\PasswordSetupController::class, 'form'])->name('password-setup');
+    Route::post('/users/{user}/password', [C\Auth\PasswordSetupController::class, 'store'])->name('password-setup-store');
+});

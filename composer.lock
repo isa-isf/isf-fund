@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3b93a12e7b7b1d07d46d7661c6b65f62",
+    "content-hash": "b52e7924fa4293918adf1097f5f341cb",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.147.14",
+            "version": "3.148.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "2ac5757aee4333c382c222880a51bd56930dafc4"
+                "reference": "d3a076ac381150d92661890af0d906477f225295"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/2ac5757aee4333c382c222880a51bd56930dafc4",
-                "reference": "2ac5757aee4333c382c222880a51bd56930dafc4",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/d3a076ac381150d92661890af0d906477f225295",
+                "reference": "d3a076ac381150d92661890af0d906477f225295",
                 "shasum": ""
             },
             "require": {
@@ -92,9 +92,53 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.147.14"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.148.0"
             },
-            "time": "2020-08-06T18:18:37+00:00"
+            "time": "2020-08-07T22:16:51+00:00"
+        },
+        {
+            "name": "binota/laravel-hashid-helpers",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/binotaliu/laravel-hashid-helpers.git",
+                "reference": "92acf5121dbc82ceea01b1b5157c442d7b83b119"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/binotaliu/laravel-hashid-helpers/zipball/92acf5121dbc82ceea01b1b5157c442d7b83b119",
+                "reference": "92acf5121dbc82ceea01b1b5157c442d7b83b119",
+                "shasum": ""
+            },
+            "require": {
+                "elfsundae/laravel-hashid": "^1.4",
+                "illuminate/contracts": "7.*|6.*|5.7.*|5.6.*",
+                "illuminate/database": "7.*|6.*|5.7.*|5.6.*",
+                "illuminate/support": "7.*|6.*|5.7.*|5.6.*"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Binota\\LaravelHashidHelpers\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "BinotaLIU",
+                    "email": "me@binota.org"
+                }
+            ],
+            "description": "Provide query functions for Eloquent Model",
+            "support": {
+                "issues": "https://github.com/binotaliu/laravel-hashid-helpers/issues",
+                "source": "https://github.com/binotaliu/laravel-hashid-helpers/tree/master"
+            },
+            "time": "2020-08-08T03:44:07+00:00"
         },
         {
             "name": "brick/math",
@@ -791,6 +835,136 @@
             "time": "2020-06-16T20:11:17+00:00"
         },
         {
+            "name": "elfsundae/laravel-hashid",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ElfSundae/laravel-hashid.git",
+                "reference": "8d47d0f3ca1f71cc9f4ddffffe43eeb717369fc8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ElfSundae/laravel-hashid/zipball/8d47d0f3ca1f71cc9f4ddffffe43eeb717369fc8",
+                "reference": "8d47d0f3ca1f71cc9f4ddffffe43eeb717369fc8",
+                "shasum": ""
+            },
+            "require": {
+                "elfsundae/urlsafe-base64": "~1.1",
+                "hashids/hashids": "^2.0.4|~3.0|~4.0",
+                "illuminate/console": "~5.0|~6.0|~7.0",
+                "illuminate/support": "~5.0|~6.0|~7.0",
+                "jenssegers/optimus": "~1.0",
+                "php": "~7.1",
+                "phpseclib/phpseclib": "~2.0",
+                "tuupola/base62": "~2.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~1.0",
+                "orchestra/testbench": "~3.0|~4.0|~5.0",
+                "paragonie/random_compat": "~1.0|~2.0",
+                "phpunit/phpunit": "~5.7|~6.0|~7.0|~8.0"
+            },
+            "suggest": {
+                "elfsundae/laravel-hashid-uuid": "Shorten UUID encoding"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "ElfSundae\\Laravel\\Hashid\\HashidServiceProvider"
+                    ],
+                    "aliases": {
+                        "Hashid": "ElfSundae\\Laravel\\Hashid\\Facades\\Hashid"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ElfSundae\\Laravel\\Hashid\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Elf Sundae",
+                    "email": "elf.sundae@gmail.com",
+                    "homepage": "https://0x123.com"
+                }
+            ],
+            "description": "A simple, elegant way to obfuscate your data by generating reversible, non-sequential, URL-safe identifiers.",
+            "homepage": "https://github.com/ElfSundae/laravel-hashid",
+            "keywords": [
+                "URL safe",
+                "base62",
+                "base64",
+                "hashid",
+                "hashids",
+                "obfuscate",
+                "optimus"
+            ],
+            "support": {
+                "issues": "https://github.com/ElfSundae/laravel-hashid/issues",
+                "source": "https://github.com/ElfSundae/laravel-hashid/tree/master"
+            },
+            "time": "2020-03-04T05:29:45+00:00"
+        },
+        {
+            "name": "elfsundae/urlsafe-base64",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ElfSundae/urlsafe-base64.git",
+                "reference": "fffdc235475308068e92c8bb1dec6b4bc7b95e73"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ElfSundae/urlsafe-base64/zipball/fffdc235475308068e92c8bb1dec6b4bc7b95e73",
+                "reference": "fffdc235475308068e92c8bb1dec6b4bc7b95e73",
+                "shasum": ""
+            },
+            "require-dev": {
+                "paragonie/random_compat": "~2.0",
+                "phpunit/phpunit": "~5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Elf Sundae",
+                    "email": "elf.sundae@gmail.com",
+                    "homepage": "https://0x123.com"
+                }
+            ],
+            "description": "URL safe base64 encoding for PHP",
+            "homepage": "https://github.com/ElfSundae/urlsafe-base64",
+            "keywords": [
+                "base64",
+                "urlsafe"
+            ],
+            "support": {
+                "issues": "https://github.com/ElfSundae/urlsafe-base64/issues",
+                "source": "https://github.com/ElfSundae/urlsafe-base64/tree/master"
+            },
+            "time": "2017-12-11T14:50:59+00:00"
+        },
+        {
             "name": "fideloper/proxy",
             "version": "4.4.0",
             "source": {
@@ -1050,6 +1224,77 @@
             "time": "2019-07-01T23:21:34+00:00"
         },
         {
+            "name": "hashids/hashids",
+            "version": "4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vinkla/hashids.git",
+                "reference": "43bb2407f16a631f0128f47bcb67ff986c63dde2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vinkla/hashids/zipball/43bb2407f16a631f0128f47bcb67ff986c63dde2",
+                "reference": "43bb2407f16a631f0128f47bcb67ff986c63dde2",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0"
+            },
+            "suggest": {
+                "ext-bcmath": "Required to use BC Math arbitrary precision mathematics (*).",
+                "ext-gmp": "Required to use GNU multiple precision mathematics (*)."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Hashids\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Akimov",
+                    "email": "ivan@barreleye.com",
+                    "homepage": "https://twitter.com/IvanAkimov"
+                },
+                {
+                    "name": "Vincent Klaiber",
+                    "email": "hello@doubledip.se",
+                    "homepage": "https://doubledip.se"
+                }
+            ],
+            "description": "Generate short, unique, non-sequential ids (like YouTube and Bitly) from numbers",
+            "homepage": "http://hashids.org/php",
+            "keywords": [
+                "bitly",
+                "decode",
+                "encode",
+                "hash",
+                "hashid",
+                "hashids",
+                "ids",
+                "obfuscate",
+                "youtube"
+            ],
+            "support": {
+                "issues": "https://github.com/vinkla/hashids/issues",
+                "source": "https://github.com/vinkla/hashids/tree/4.0.0"
+            },
+            "time": "2019-04-03T13:40:29+00:00"
+        },
+        {
             "name": "hollodotme/fast-cgi-client",
             "version": "v3.1.2",
             "source": {
@@ -1117,6 +1362,76 @@
                 "source": "https://github.com/hollodotme/fast-cgi-client/tree/v3.1.2"
             },
             "time": "2020-05-19T14:06:29+00:00"
+        },
+        {
+            "name": "jenssegers/optimus",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jenssegers/optimus.git",
+                "reference": "e7f95de8dd6aff4a67f05e2d8bcc72c389bf68dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jenssegers/optimus/zipball/e7f95de8dd6aff4a67f05e2d8bcc72c389bf68dd",
+                "reference": "e7f95de8dd6aff4a67f05e2d8bcc72c389bf68dd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0",
+                "phpseclib/phpseclib": "^2.0",
+                "symfony/console": "^3.0|^4.0|^5.0"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "^6.0|^7.0|^8.0"
+            },
+            "suggest": {
+                "ext-gmp": "Required for 32bit systems"
+            },
+            "bin": [
+                "bin/optimus"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jenssegers\\Optimus\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jens Segers",
+                    "homepage": "https://jenssegers.com"
+                }
+            ],
+            "description": "Id obfuscation based on Knuth's integer hash method",
+            "homepage": "https://github.com/jenssegers/optimus",
+            "keywords": [
+                "hashids",
+                "id obfuscation",
+                "ids",
+                "obfuscation",
+                "optimus"
+            ],
+            "support": {
+                "issues": "https://github.com/jenssegers/optimus/issues",
+                "source": "https://github.com/jenssegers/optimus/tree/master"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/jenssegers",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/jenssegersoptimus",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2020-03-06T08:26:18+00:00"
         },
         {
             "name": "laravel/framework",
@@ -2341,6 +2656,116 @@
                 }
             ],
             "time": "2020-07-20T17:29:33+00:00"
+        },
+        {
+            "name": "phpseclib/phpseclib",
+            "version": "2.0.28",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpseclib/phpseclib.git",
+                "reference": "d1ca58cf33cb21046d702ae3a7b14fdacd9f3260"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/d1ca58cf33cb21046d702ae3a7b14fdacd9f3260",
+                "reference": "d1ca58cf33cb21046d702ae3a7b14fdacd9f3260",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phing/phing": "~2.7",
+                "phpunit/phpunit": "^4.8.35|^5.7|^6.0",
+                "sami/sami": "~2.0",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "suggest": {
+                "ext-gmp": "Install the GMP (GNU Multiple Precision) extension in order to speed up arbitrary precision integer arithmetic operations.",
+                "ext-libsodium": "SSH2/SFTP can make use of some algorithms provided by the libsodium-php extension.",
+                "ext-mcrypt": "Install the Mcrypt extension in order to speed up a few other cryptographic operations.",
+                "ext-openssl": "Install the OpenSSL extension in order to speed up a wide variety of cryptographic operations."
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "phpseclib/bootstrap.php"
+                ],
+                "psr-4": {
+                    "phpseclib\\": "phpseclib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jim Wigginton",
+                    "email": "terrafrost@php.net",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Patrick Monnerat",
+                    "email": "pm@datasphere.ch",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Andreas Fischer",
+                    "email": "bantu@phpbb.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Hans-Jürgen Petrich",
+                    "email": "petrich@tronic-media.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Graham Campbell",
+                    "email": "graham@alt-three.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP Secure Communications Library - Pure-PHP implementations of RSA, AES, SSH2, SFTP, X.509 etc.",
+            "homepage": "http://phpseclib.sourceforge.net",
+            "keywords": [
+                "BigInteger",
+                "aes",
+                "asn.1",
+                "asn1",
+                "blowfish",
+                "crypto",
+                "cryptography",
+                "encryption",
+                "rsa",
+                "security",
+                "sftp",
+                "signature",
+                "signing",
+                "ssh",
+                "twofish",
+                "x.509",
+                "x509"
+            ],
+            "support": {
+                "issues": "https://github.com/phpseclib/phpseclib/issues",
+                "source": "https://github.com/phpseclib/phpseclib/tree/2.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/terrafrost",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/phpseclib",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/phpseclib/phpseclib",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-07-08T09:08:33+00:00"
         },
         {
             "name": "psr/container",
@@ -5709,6 +6134,62 @@
             "time": "2020-07-13T06:12:54+00:00"
         },
         {
+            "name": "tuupola/base62",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tuupola/base62.git",
+                "reference": "3ad889519d5eda50a9c0793c66dda85f6a3787e9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tuupola/base62/zipball/3ad889519d5eda50a9c0793c66dda85f6a3787e9",
+                "reference": "3ad889519d5eda50a9c0793c66dda85f6a3787e9",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "overtrue/phplint": "^1.0",
+                "phpbench/phpbench": "^0.15.0",
+                "phpstan/phpstan": "^0.10.6",
+                "phpunit/phpunit": "^5.0|^6.0|^7.0",
+                "squizlabs/php_codesniffer": "^3.0"
+            },
+            "suggest": {
+                "ext-gmp": "GMP extension provides the fastest encoding and decoding."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tuupola\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mika Tuupola",
+                    "email": "tuupola@appelsiini.net",
+                    "homepage": "https://appelsiini.net/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Base62 encoder and decoder for arbitrary data",
+            "homepage": "https://github.com/tuupola/base62",
+            "keywords": [
+                "base62"
+            ],
+            "support": {
+                "issues": "https://github.com/tuupola/base62/issues",
+                "source": "https://github.com/tuupola/base62/tree/2.x"
+            },
+            "time": "2018-12-30T09:27:05+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v4.1.8",
             "source": {
@@ -9050,6 +9531,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "binota/laravel-hashid-helpers": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": true,
