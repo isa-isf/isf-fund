@@ -7,8 +7,8 @@ use Binota\LaravelHashidHelpers\Concerns\HasHashid;
 use Binota\LaravelHashidHelpers\Concerns\HashidRouteBinding;
 use Binota\LaravelHashidHelpers\Concerns\QueryWithHashid;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * App\Models\User

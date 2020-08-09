@@ -21,4 +21,5 @@ yarn-error.log
 .env.staging
 
 .phpunit.result.cache
+.php_cs.cache
 

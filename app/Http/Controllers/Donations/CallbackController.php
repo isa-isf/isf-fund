@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Donations;
 
 use App\Enums\DonationStatus;
 use App\Enums\DonationType;
+use App\Enums\PaymentStatus;
+use App\Http\Controllers\Controller;
 use App\Models\Donation;
 use App\Models\Payment;
-use App\Enums\PaymentStatus;
 use App\Services\Ecpay;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request as HTTPRequest;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 
 class CallbackController extends Controller
@@ -69,6 +69,7 @@ class CallbackController extends Controller
         switch (true) {
             case DonationType::ONE_TIME()->equals($donation->type):
                 $donation->status = DonationStatus::INACTIVE();
+                // no break
             case DonationType::MONTHLY()->equals($donation->type):
             default:
                 $donation->status = DonationStatus::ACTIVE();

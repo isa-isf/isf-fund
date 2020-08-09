@@ -15,7 +15,7 @@ class Card extends Component
      *
      * @return void
      */
-    public function __construct(string $color = 'white', string $titleColor = 'gray', string $title)
+    public function __construct(string $color, string $titleColor, string $title)
     {
         $this->title = $title;
         $this->titleColor = $titleColor;
