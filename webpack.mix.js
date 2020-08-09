@@ -17,6 +17,9 @@ mix.js('resources/js/app.js', 'public/assets/js')
 mix.js('resources/js/manage.js', 'public/assets/js')
 mix.postCss('resources/css/app.css', 'public/assets/css', [require('tailwindcss')])
 
+mix.copy('node_modules/open-iconic/font/css/open-iconic.min.css', 'public/assets/vendor/open-iconic/css/open-iconic.min.css');
+mix.copy('node_modules/open-iconic/font/fonts', 'public/assets/vendor/open-iconic/fonts/');
+
 mix.version();
 
 mix.webpackConfig({

@@ -19,6 +19,7 @@
     "dependencies": {
         "alpinejs": "^2.5.0",
         "notyf": "^3.9.0",
+        "open-iconic": "^1.1.1",
         "tailwindcss": "^1.6.2",
         "vue": "^2.6.11"
     }
