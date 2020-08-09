@@ -101,7 +101,7 @@ class Donation extends Model
 
     public function payments(): HasMany
     {
-        return $this->hasMany(Payment::class);
+        return $this->hasMany(Payment::class)->latest();
     }
 
     public function latest_payment(): HasOne
