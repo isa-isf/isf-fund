@@ -6,6 +6,7 @@ use App\Enums\DonationStatus;
 use App\Enums\DonationType;
 use Binota\LaravelHashidHelpers\Concerns\GetHashid;
 use Binota\LaravelHashidHelpers\Concerns\HasHashid;
+use Binota\LaravelHashidHelpers\Concerns\HashidRouteBinding;
 use Binota\LaravelHashidHelpers\Concerns\QueryWithHashid;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -67,6 +68,7 @@ class Donation extends Model
 {
     use SoftDeletes;
     use HasHashid, GetHashid, QueryWithHashid;
+    use HashidRouteBinding;
 
     public function setStatusAttribute(DonationStatus $value)
     {

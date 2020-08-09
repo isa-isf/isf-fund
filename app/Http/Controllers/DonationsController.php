@@ -28,6 +28,13 @@ class DonationsController extends Controller
             ->get();
     }
 
+    public function show(Donation $donation)
+    {
+        return view('manage.donations.show', [
+            'donation' => $donation
+        ]);
+    }
+
     /**
      * @throws \Exception
      */

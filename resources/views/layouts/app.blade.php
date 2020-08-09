@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    @if(View::hasSection('title'))
+        <title>@yield('title') - 國際社會主義前進籌款系統</title>
+    @else
+        <title>國際社會主義前進籌款系統</title>
+    @endif
 
     <link rel="stylesheet" href="{{ mix('assets/css/app.css') }}">
 

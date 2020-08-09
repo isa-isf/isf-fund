@@ -23,7 +23,8 @@ Route::post('/donations/{uuid}/period-callback', [C\Donations\CallbackController
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/_/donations', [C\DonationsController::class, 'index']);
     Route::put('/_/donations/{id}/archive', [C\DonationsController::class, 'archive']);
-    Route::get('/manage/{vueCapture?}', [C\ManageController::class, 'index'])->where('vueCapture', '.*');
+    Route::get('/manage', [C\ManageController::class, 'index']);
+    Route::get('/manage/donations/{donation}', [C\DonationsController::class, 'show']);
 });
 
 Auth::routes([

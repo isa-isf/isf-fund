@@ -47,6 +47,20 @@ class Payment extends Model
     use SoftDeletes;
     use HasHashid, GetHashid, QueryWithHashid;
 
+    public function setStatusAttribute(PaymentStatus $value)
+    {
+        $this->attributes['status'] = $value;
+    }
+
+    public function getStatusAttribute($value)
+    {
+        if ($value instanceof PaymentStatus) {
+            return $value;
+        }
+
+        return new PaymentStatus($value);
+    }
+
     public function donation(): BelongsTo
     {
         return $this->belongsTo(Donation::class);
