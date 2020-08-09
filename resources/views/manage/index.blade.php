@@ -39,7 +39,7 @@
 
             <div class="w-full overflow-x-auto">
                 <x-card class="w-full" style="min-width:900px">
-                    <table class="w-full">
+                    <table class="w-full mb-4">
                         <thead><tr>
                             <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="80">捐款#</td>
                             <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold" width="180">姓名</td>
@@ -79,6 +79,9 @@
                             @endforelse
                         </tbody>
                     </table>
+                    <div class="text-right">
+                        <a href="{{ url('manage/donations?type=one-time') }}" class="text-blue-500 hover:text-blue-400 hover:underline">檢視全部一次性捐款資料</a>
+                    </div>
                 </x-card>
             </div>
         </div>
@@ -91,7 +94,7 @@
 
             <div class="w-full overflow-x-auto">
                 <x-card class="w-full" style="min-width:900px">
-                    <table class="w-full">
+                    <table class="w-full mb-6">
                         <thead><tr>
                             <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="80">捐款#</td>
                             <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-center" width="130">本月已收？</td>
@@ -131,6 +134,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="text-right">
+                        <a href="{{ url('manage/donations?type=monthly') }}" class="text-blue-500 hover:text-blue-400 hover:underline">檢視全部月捐資料</a>
+                    </div>
                 </x-card>
             </div>
         </div>

@@ -42,5 +42,6 @@
     </main>
 
     @livewireScripts
+    <script src="{{ mix('assets/js/manage.js') }}"></script>
 </body>
 </html>

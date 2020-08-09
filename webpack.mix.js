@@ -14,7 +14,10 @@ const mix = require('laravel-mix');
 const ASSETS_ROOT = 'public/assets';
 
 mix.js('resources/js/app.js', 'public/assets/js')
+mix.js('resources/js/manage.js', 'public/assets/js')
 mix.postCss('resources/css/app.css', 'public/assets/css', [require('tailwindcss')])
+
+mix.version();
 
 mix.webpackConfig({
   resolve: {

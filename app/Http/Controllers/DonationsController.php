@@ -8,24 +8,31 @@ use App\Models\Donation;
 use App\Models\Payment;
 use App\Services\Ecpay;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
 
 class DonationsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return Donation
-            ::query()
-            ->withCount(['payments'])
-            ->with([
-                'payments' => function (HasMany $query) {
-                    $query->orderByDesc('id');
-                },
-            ])
-            ->whereNull('archive_at')
-            ->get();
+        return view('manage.donations.index', [
+            'donations' => Donation
+                ::query()
+                ->when(
+                    DonationType::isValid($request->input('type')),
+                    fn ($q) => $q->where('type', $request->input('type'))
+                )
+                ->when(
+                    DonationStatus::isValid($request->input('status')),
+                    fn ($q) => $q->where('status', $request->input('status'))
+                )
+                ->unless(
+                    $request->input('include_unpaid', false),
+                    fn ($q) => $q->where('status', '<>', DonationStatus::CREATED())
+                )
+                ->latest()
+                ->paginate(20),
+        ]);
     }
 
     public function show(Donation $donation)

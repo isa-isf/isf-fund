@@ -21,9 +21,8 @@ Route::post('/donations/{uuid}/first-callback', [C\Donations\CallbackController:
 Route::post('/donations/{uuid}/period-callback', [C\Donations\CallbackController::class, 'period']);
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/_/donations', [C\DonationsController::class, 'index']);
-    Route::put('/_/donations/{id}/archive', [C\DonationsController::class, 'archive']);
     Route::get('/manage', [C\ManageController::class, 'index']);
+    Route::get('/manage/donations', [C\DonationsController::class, 'index']);
     Route::get('/manage/donations/{donation}', [C\DonationsController::class, 'show']);
 });
 

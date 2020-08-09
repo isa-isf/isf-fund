@@ -17,6 +17,7 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
+        "alpinejs": "^2.5.0",
         "notyf": "^3.9.0",
         "tailwindcss": "^1.6.2",
         "vue": "^2.6.11"
