@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\DonationStatus;
 use App\Models\Donation;
 use App\Models\Payment;
 use App\Enums\DonationType;
@@ -46,6 +47,7 @@ class DonationsController extends Controller
         $payment = $request->input('payment');
 
         $donation = new Donation;
+        $donation->status = DonationStatus::CREATED();
         $donation->uuid = Uuid::uuid4()->toString();
         $donation->name = $profile['name'] ?? '';
         $donation->phone = $profile['phone'] ?? '';

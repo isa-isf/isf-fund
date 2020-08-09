@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\DonationStatus;
 use App\Enums\DonationType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * App\Models\Donation
  *
  * @property int $id
+ * @property string $status
  * @property string $uuid
  * @property string $name
  * @property string $phone
@@ -41,6 +43,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation whereMessage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation whereUuid($value)
@@ -51,6 +54,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Donation extends Model
 {
     use SoftDeletes;
+
+    public function setStatusAttribute(DonationStatus $value)
+    {
+        $this->attributes['status'] = $value;
+    }
+
+    public function getStatusAttribute($value)
+    {
+        if ($value instanceof DonationStatus) {
+            return $value;
+        }
+
+        return new DonationStatus($value);
+    }
 
     public function setTypeAttribute(DonationType $value)
     {

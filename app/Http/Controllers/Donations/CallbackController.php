@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Donations;
 
+use App\Enums\DonationStatus;
+use App\Enums\DonationType;
 use App\Models\Donation;
 use App\Models\Payment;
 use App\Enums\PaymentStatus;
@@ -40,6 +42,9 @@ class CallbackController extends Controller
         $payment->status = $reqs->input('RtnCode') === '1' ? PaymentStatus::PAID() : PaymentStatus::FAILED();
         $payment->save();
 
+        $donation->status = DonationStatus::ACTIVE();
+        $donation->save();
+
         return '1|OK';
     }
 
@@ -60,6 +65,15 @@ class CallbackController extends Controller
         $payment = $donation->payments()->orderBy('id')->firstOrFail();
         $payment->status = $reqs->input('RtnCode') === '1' ? PaymentStatus::PAID() : PaymentStatus::FAILED();
         $payment->save();
+
+        switch (true) {
+            case DonationType::ONE_TIME()->equals($donation->type):
+                $donation->status = DonationStatus::INACTIVE();
+            case DonationType::MONTHLY()->equals($donation->type):
+            default:
+                $donation->status = DonationStatus::ACTIVE();
+        }
+        $donation->save();
 
         return '1|OK';
     }
