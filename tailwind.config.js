@@ -1,4 +1,10 @@
 module.exports = {
+  purge: [
+    './app/View/Components/*.php',
+    './resources/**/*.blade.php',
+    './resources/**/*.vue',
+    './vendor/**/*.blade.php',
+  ],
   prefix: '',
   important: false,
   separator: ':',

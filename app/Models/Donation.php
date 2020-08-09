@@ -4,8 +4,13 @@ namespace App\Models;
 
 use App\Enums\DonationStatus;
 use App\Enums\DonationType;
+use Binota\LaravelHashidHelpers\Concerns\GetHashid;
+use Binota\LaravelHashidHelpers\Concerns\HasHashid;
+use Binota\LaravelHashidHelpers\Concerns\QueryWithHashid;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -26,8 +31,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read mixed $hashid
+ * @property-read \App\Models\Payment|null $latest_payment
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Payment[] $payments
  * @property-read int|null $payments_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation findHashid($hashId, $columns = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation findHashidOrFail($hashId, $columns = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation findHashidOrNew($hashId, $columns = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation findManyHashid($hashIds, $columns = [])
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation newQuery()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Donation onlyTrashed()
@@ -39,6 +50,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation whereHashidKey($hashId)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation whereMessage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation whereName($value)
@@ -54,6 +66,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Donation extends Model
 {
     use SoftDeletes;
+    use HasHashid, GetHashid, QueryWithHashid;
 
     public function setStatusAttribute(DonationStatus $value)
     {
@@ -86,5 +99,15 @@ class Donation extends Model
     public function payments(): HasMany
     {
         return $this->hasMany(Payment::class);
+    }
+
+    public function latest_payment(): HasOne
+    {
+        return $this->hasOne(Payment::class)->latest();
+    }
+
+    public function getLastPaymentTime(): ?Carbon
+    {
+        return optional($this->latest_payment)->updated_at;
     }
 }

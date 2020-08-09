@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use App\Enums\PaymentStatus;
+use Binota\LaravelHashidHelpers\Concerns\GetHashid;
+use Binota\LaravelHashidHelpers\Concerns\HasHashid;
+use Binota\LaravelHashidHelpers\Concerns\QueryWithHashid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -18,6 +21,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\Models\Donation $donation
+ * @property-read mixed $hashid
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment findHashid($hashId, $columns = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment findHashidOrFail($hashId, $columns = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment findHashidOrNew($hashId, $columns = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment findManyHashid($hashIds, $columns = [])
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment newQuery()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Payment onlyTrashed()
@@ -26,6 +34,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereDonationId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereHashidKey($hashId)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereUpdatedAt($value)
@@ -36,6 +45,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Payment extends Model
 {
     use SoftDeletes;
+    use HasHashid, GetHashid, QueryWithHashid;
 
     public function donation(): BelongsTo
     {
