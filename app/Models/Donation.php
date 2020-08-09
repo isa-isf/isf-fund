@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\DonationStatus;
 use App\Enums\DonationType;
+use App\Enums\PaymentStatus;
 use Binota\LaravelHashidHelpers\Concerns\GetHashid;
 use Binota\LaravelHashidHelpers\Concerns\HasHashid;
 use Binota\LaravelHashidHelpers\Concerns\HashidRouteBinding;
@@ -105,7 +106,7 @@ class Donation extends Model
 
     public function latest_payment(): HasOne
     {
-        return $this->hasOne(Payment::class)->latest();
+        return $this->hasOne(Payment::class)->where('status', PaymentStatus::PAID())->latest();
     }
 
     public function getLastPaymentTime(): ?Carbon
