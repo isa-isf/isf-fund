@@ -16,15 +16,26 @@
     @livewireStyles
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic.min.css" integrity="sha512-LeCmts7kEi09nKc+DwGJqDV+dNQi/W8/qb0oUSsBLzTYiBwxj0KBlAow2//jV7jwEHwSCPShRN2+IWwWcn1x7Q==" crossorigin="anonymous" />
 </head>
-</head>
 <body>
-    <nav class="mb-4 bg-gray-200">
-        <div class="container mx-auto px-6 flex">
-            <a class="px-2 py-4 text-lg font-semibold text-gray-900 hover:text-gray-700" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
-            </a>
+    <header class="mb-4 bg-gray-200">
+        <div class="container mx-auto px-6">
+            <div class="flex items-stretch justify-between mx-2">
+                <a class="px-2 py-4 text-lg font-semibold text-gray-900 hover:text-gray-700" href="{{ url('manage') }}">
+                    {{ config('app.name', 'Laravel') }}
+                </a>
+
+                <nav class="flex items-stretch">
+                    @auth
+                        <a href="{{ url('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit()" class="flex items-center px-2 text-gray-900 hover:bg-gray-100">登出</a>
+
+                        <form id="logout-form" class="hidden" action="{{ url('logout') }}" method="post">
+                            @csrf
+                        </div>
+                    @endauth
+                </nav>
+            </div>
         </div>
-    </nav>
+    </header>
 
     <main class="py-4">
         @yield('content')
