@@ -14,7 +14,7 @@ class UpdateDonationStatuses extends Migration
         // Mark donations where there are payments in recent 3 months as active
         $statement = DB
             ::getPdo()
-            ->prepare("update donations set donations.status = 'active' where donations.id in (select payments.donation_id from payments where payments.created_at >= ?)");
+            ->prepare("update donations set donations.status = 'active' where donations.id in (select payments.donation_id from payments where payments.status = 101 and payments.created_at >= ?)");
         $statement->execute([now()->subMonths(3)->toDateTimeString()]);
     }
 
