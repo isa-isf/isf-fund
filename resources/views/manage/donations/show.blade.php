@@ -9,7 +9,7 @@
         </div>
 
         <div class="flex flex-col-reverse md:flex-row">
-            <x-card title="基本資料" class="w-1/3 mx-2">
+            <x-card title="基本資料" class="md:w-1/3 mx-2">
                 <div class="mb-2">
                     <dd class="text-black">姓名</dd>
                     <dt class="ml-4 text-gray-900">
@@ -42,7 +42,7 @@
                 </div>
             </x-card>
 
-            <div class="flex-grow mx-2">
+            <div class="flex-grow mx-2 mb-4">
                 <x-card title="捐款金額" class="mb-4">
                     <div class="mb-2">
                         <dd class="text-black">狀態</dd>
