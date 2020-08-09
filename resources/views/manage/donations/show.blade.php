@@ -61,7 +61,7 @@
                         <dt class="ml-4 text-gray-900">
                             @if(\App\Enums\DonationType::ONE_TIME()->equals($donation->type))
                                 一次性
-                            @elseif(\App\Enums\DonationStatus::MONTHLY()->equals($donation->type))
+                            @elseif(\App\Enums\DonationType::MONTHLY()->equals($donation->type))
                                 每月定期定額
                             @endif
                         </dt>
