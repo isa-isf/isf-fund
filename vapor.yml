@@ -2,6 +2,7 @@ id: 3721
 name: isf-saisen
 environments:
     production:
+        runtime: php-7.4
         memory: 1024
         cli-memory: 512
         build:
@@ -11,6 +12,7 @@ environments:
             - 'npm ci'
             - 'npm run prod && rm -rf node_modules'
     staging:
+        runtime: php-7.4
         memory: 1024
         cli-memory: 512
         build:
