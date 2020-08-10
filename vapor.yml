@@ -7,13 +7,15 @@ environments:
         build:
             - 'composer install --no-dev --classmap-authoritative'
             - 'php artisan event:cache'
-            - 'npm i -g yarn'
-            - 'yarn && yarn run prod && rm -rf node_modules'
+            - 'php artisan horizon:publish'
+            - 'npm ci'
+            - 'npm run prod && rm -rf node_modules'
     staging:
         memory: 1024
         cli-memory: 512
         build:
             - 'composer install --classmap-authoritative'
             - 'php artisan event:cache'
-            - 'npm i -g yarn'
-            - 'yarn && yarn run dev && rm -rf node_modules'
+            - 'php artisan horizon:publish'
+            - 'npm ci'
+            - 'npm run dev && rm -rf node_modules'
