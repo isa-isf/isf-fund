@@ -11,26 +11,10 @@ const mix = require('laravel-mix');
  |
  */
 
-const ASSETS_ROOT = 'public/assets';
-
 mix.js('resources/js/app.js', 'public/assets/js')
-mix.js('resources/js/manage.js', 'public/assets/js')
 mix.postCss('resources/css/app.css', 'public/assets/css', [require('tailwindcss')])
 
 mix.copy('node_modules/open-iconic/font/css/open-iconic.min.css', 'public/assets/vendor/open-iconic/css/open-iconic.min.css');
 mix.copy('node_modules/open-iconic/font/fonts', 'public/assets/vendor/open-iconic/fonts/');
 
 mix.version();
-
-mix.webpackConfig({
-  resolve: {
-    extensions: ['.less'],
-    alias: {
-      app: path.resolve(__dirname, 'resources/js/'),
-    },
-  },
-  output: {
-    publicPath: '/',
-    chunkFilename: 'assets/js/manage-[name]-[chunkhash].js',
-  },
-});

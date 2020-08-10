@@ -1,47 +1,16 @@
 import axios from 'axios'
 import { Notyf } from 'notyf'
-import Vue from 'vue'
-import 'notyf/notyf.min.css'
-import './bootstrap'
+import 'alpinejs'
 
-const notyf = new Notyf()
+window.notyf = new Notyf()
+window.axios = axios
 
-new Vue({
-  el: '#app',
-  data: {
-    profile: {
-      name: '',
-      phone: '',
-      email: '',
-      address: '',
-    },
-    payment: {
-      amount: 1000,
-      custom_amount: 500,
-      type: 'monthly',
-      message: '',
-    },
-    form_errors: [],
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 
-    submitting: false,
+const token = document.head.querySelector('meta[name="csrf-token"]')
 
-  },
-  methods: {
-    submit() {
-      this.submitting = true
-
-      axios
-        .post('_/donations', { profile: this.profile, payment: this.payment })
-        .then(response => {
-          window.location.href = response.data.redirect
-         })
-        .catch(error => {
-          notyf.error('發生錯誤');
-          if (error.response && error.response.data && error.response.data.errors) {
-            this.$set(this, 'form_errors', Object.values(error.response.data.errors))
-          }
-          this.submitting = false
-        });
-    },
-  },
-});
+if (token) {
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content
+} else {
+    console.error('CSRF token not found')
+}
