@@ -7,7 +7,7 @@
     "require": {
         "php": "^7.4",
         "aws/aws-sdk-php": "^3.148",
-        "binota/laravel-hashid-helpers": "dev-master",
+        "binota/laravel-hashid-helpers": "^0.1.0",
         "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.4",
         "guzzlehttp/guzzle": "^6.3",

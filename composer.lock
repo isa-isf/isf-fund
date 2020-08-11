@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d83172884d99717f8d88e199fbd3d3a",
+    "content-hash": "5efde672866ab67cac3983045408bd50",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -98,7 +98,7 @@
         },
         {
             "name": "binota/laravel-hashid-helpers",
-            "version": "dev-master",
+            "version": "0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/binotaliu/laravel-hashid-helpers.git",
@@ -116,7 +116,6 @@
                 "illuminate/database": "7.*|6.*|5.7.*|5.6.*",
                 "illuminate/support": "7.*|6.*|5.7.*|5.6.*"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -9763,7 +9762,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "binota/laravel-hashid-helpers": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": true,
