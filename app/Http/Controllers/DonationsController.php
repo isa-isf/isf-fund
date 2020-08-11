@@ -26,9 +26,10 @@ class DonationsController extends Controller
                     DonationStatus::isValid($request->input('status')),
                     fn ($q) => $q->where('status', $request->input('status'))
                 )
-                ->unless(
+                ->when(
                     $request->input('include_unpaid', false) ||
-                    !DonationStatus::CREATED()->equals($request->input('status')),
+                    DonationStatus::CREATED()->equals($request->input('status')),
+                    fn ($q) => $q,
                     fn ($q) => $q->where('status', '<>', DonationStatus::CREATED())
                 )
                 ->latest()
