@@ -33,6 +33,7 @@ class DonationsController extends Controller
                     fn ($q) => $q->where('status', '<>', DonationStatus::CREATED())
                 )
                 ->latest()
+                ->with(['latest_payment'])
                 ->paginate(20),
         ]);
     }
