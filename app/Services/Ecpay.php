@@ -51,9 +51,8 @@ class Ecpay
 
     public function createFrom(Payment $payment): array
     {
-        $objectId = Str::before($payment->donation->uuid, '-');
-        $objectId .= str_pad($payment->donation_id, 4, '0', STR_PAD_LEFT);
-        $objectId .= str_pad($payment->id, 4, '0', STR_PAD_LEFT);
+        $objectId = 'ISF-' . $payment->donation->hashid;
+
         $data = [
             'MerchantID' => $this->merchant_id,
             'MerchantTradeNo' => $objectId,
