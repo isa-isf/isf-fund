@@ -6,7 +6,11 @@
             <h2 class="text-2xl mb-2 md:mb-0">捐款列表</h3>
             <div
                 class="flex flex-col"
-                x-data="{ type: '{{ Request::input('type') }}', status: '{{ Request::input('status') }}' }"
+                x-data="{
+                    type: '{{ Request::input('type') }}',
+                    status: '{{ Request::input('status') }}',
+                    include_unpaid: '{{ Request::input('include_unpaid') }}'
+                }"
             >
                 <div class="flex items-center mb-2">
                     <div class="mr-2">類型：</div>
@@ -22,13 +26,24 @@
                         <option value="">全部</option>
                         <option value="{{ \App\Enums\DonationStatus::ACTIVE() }}">有效</option>
                         <option value="{{ \App\Enums\DonationStatus::INACTIVE() }}">無效</option>
+                        <option value="{{ \App\Enums\DonationStatus::CREATED() }}">未付款</option>
                     </select>
+                </div>
+                <div class="flex items-center mb-2">
+                    <label for="filter-include-unpaid" class="mr-2">
+                        包含未付款：
+                    </label>
+                    <input type="checkbox" id="filter-include-unpaid" x-model="include_unpaid">
                 </div>
                 <div>
                     <x-button @click="
                         const url = new URL(window.location.href);
                         url.searchParams.set('status', status);
                         url.searchParams.set('type', type);
+                        url.searchParams.set('include_unpaid', 1);
+                        if (!include_unpaid) {
+                            url.searchParams.delete('include_unpaid');
+                        }
                         window.location.assign(url.toString());
                     ">套用</x-button>
                 </div>
