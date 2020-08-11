@@ -6,10 +6,12 @@
     <div
         class="
             flex-grow p-4 border
-            @empty($title)
+            @if(empty($title))
+                rounded
+            @else
                 border-t-0
-            @endempty
-            rounded-b
+                rounded-b
+            @endif
         "
     >
         {{ $slot }}
