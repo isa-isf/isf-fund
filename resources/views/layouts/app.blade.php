@@ -13,7 +13,6 @@
 
     <link rel="stylesheet" href="{{ mix('assets/css/app.css') }}">
 
-    @livewireStyles
     <link rel="stylesheet" href="{{ mix('assets/vendor/open-iconic/css/open-iconic.min.css') }}">
 </head>
 <body>
@@ -41,7 +40,6 @@
         @yield('content')
     </main>
 
-    @livewireScripts
     <script src="{{ mix('assets/js/app.js') }}"></script>
 </body>
 </html>
