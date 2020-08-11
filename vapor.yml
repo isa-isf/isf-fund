@@ -1,23 +1,24 @@
-id: 3721
+id: 12461
 name: isf-saisen
 environments:
     production:
         runtime: php-7.4
         memory: 1024
         cli-memory: 512
+        database: neko-senpai
+        domain: fund.socialism.org.tw
         build:
             - 'composer install --no-dev --classmap-authoritative'
             - 'php artisan event:cache'
-            - 'php artisan horizon:publish'
             - 'npm ci'
             - 'npm run prod && rm -rf node_modules'
     staging:
         runtime: php-7.4
         memory: 1024
         cli-memory: 512
+        database: neko-senpai
         build:
             - 'composer install --classmap-authoritative'
             - 'php artisan event:cache'
-            - 'php artisan horizon:publish'
             - 'npm ci'
             - 'npm run dev && rm -rf node_modules'
