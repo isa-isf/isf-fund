@@ -75,7 +75,9 @@
                                     @endif
                                 </td>
                                 <td class="px-2 py-1 border-b border-gray-200 text-center">
-                                    @if(optional($record->getLastPaymentTime())->isCurrentMonth())
+                                    @if(\App\Enums\DonationType::ONE_TIME()->equals($record->type))
+                                        <span title="一次性">-</span>
+                                    @elseif(optional($record->getLastPaymentTime())->isCurrentMonth())
                                         <span class="oi" data-glyph="check"></span>
                                     @elseif(optional($record->getLastPaymentTime())->lt(now()->subMonths(2)))
                                         <span class="oi text-yellow-500" data-glyph="warning" title="超過 2 個月未收到款項"></span>
