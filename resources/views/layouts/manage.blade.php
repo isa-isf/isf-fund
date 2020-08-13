@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="robots" content="noindex, nofollow">
 
     @if(View::hasSection('title'))
         <title>@yield('title') - 國際社會主義前進籌款系統</title>
@@ -19,9 +20,18 @@
     <header class="mb-4 bg-gray-200 border-t-4 border-red-500">
         <div class="container mx-auto px-6">
             <div class="flex items-stretch justify-between mx-2">
-                <a class="px-2 py-4 text-lg font-semibold text-gray-900 hover:text-gray-700 hover:bg-gray-100" href="{{ url('manage') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+                <div class="flex">
+                    <a class="px-2 py-4 mr-4 text-lg font-semibold text-gray-900 hover:text-gray-700 hover:bg-gray-100" href="{{ url('manage') }}">
+                        {{ config('app.name', 'Laravel') }}
+                    </a>
+
+                    @auth
+                        <a href="{{ url('manage/income-report') }}" class="flex items-center px-2 text-gray-900 hover:bg-gray-100">
+                            <span class="oi mr-1" data-glyph="graph"></span>
+                            收款報表
+                        </a>
+                    @endauth
+                </div>
 
                 <nav class="flex items-stretch">
                     @auth
