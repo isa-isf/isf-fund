@@ -30,9 +30,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property float $amount
  * @property string $message
  * @property string|null $archive_at
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property \Carbon\CarbonImmutable|null $created_at
+ * @property \Carbon\CarbonImmutable|null $updated_at
+ * @property \Carbon\CarbonImmutable|null $deleted_at
  * @property-read mixed $hashid
  * @property-read \App\Models\Payment|null $latest_payment
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Payment[] $payments

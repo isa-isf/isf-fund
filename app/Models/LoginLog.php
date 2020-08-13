@@ -6,6 +6,31 @@ use App\Enums\LoginResult;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
+/**
+ * App\Models\LoginLog
+ *
+ * @property int $id
+ * @property string $email
+ * @property \App\Enums\LoginResult $result
+ * @property string $ip_address
+ * @property string $user_agent
+ * @property int|null $user_id
+ * @property \Carbon\CarbonImmutable|null $created_at
+ * @property \Carbon\CarbonImmutable|null $updated_at
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\LoginLog newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\LoginLog newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\LoginLog query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\LoginLog whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\LoginLog whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\LoginLog whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\LoginLog whereIpAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\LoginLog whereResult($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\LoginLog whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\LoginLog whereUserAgent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\LoginLog whereUserId($value)
+ * @mixin \Eloquent
+ */
 class LoginLog extends Model
 {
     protected $table = 'login_logs';

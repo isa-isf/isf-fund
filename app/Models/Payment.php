@@ -17,9 +17,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $status
  * @property int $donation_id
  * @property float $amount
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property \Carbon\CarbonImmutable|null $created_at
+ * @property \Carbon\CarbonImmutable|null $updated_at
+ * @property \Carbon\CarbonImmutable|null $deleted_at
  * @property-read \App\Models\Donation $donation
  * @property-read mixed $hashid
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment findHashid($hashId, $columns = [])
