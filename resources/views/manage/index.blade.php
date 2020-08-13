@@ -38,10 +38,9 @@
             </h3>
 
             <div class="w-full overflow-x-auto">
-                <x-card class="w-full" style="min-width:900px">
+                <x-card class="w-full" style="min-width:800px">
                     <table class="w-full mb-4">
                         <thead><tr>
-                            <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="80">捐款#</td>
                             <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold" width="180">姓名</td>
                             <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold">留言</td>
                             <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="100">金額</td>
@@ -51,8 +50,7 @@
                         <tbody>
                             @forelse($recentOneTime as $record)
                                 <tr>
-                                    <td class="px-2 py-1 border-b border-gray-200 text-right">{{ $record->hashid }}</td>
-                                    <td class="px-2 py-1 border-b border-gray-200">{{ $record->name }}</td>
+                                    <td class="px-2 py-1 border-b border-gray-200" title="{{ $record->hashid }}">{{ $record->name }}</td>
                                     <td class="px-2 py-1 border-b border-gray-200">
                                         {{ $record->message }}
                                     </td>
@@ -93,10 +91,9 @@
             </h3>
 
             <div class="w-full overflow-x-auto">
-                <x-card class="w-full" style="min-width:900px">
+                <x-card class="w-full" style="min-width:770px">
                     <table class="w-full mb-6">
                         <thead><tr>
-                            <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="80">捐款#</td>
                             <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-center" width="130">本月已收？</td>
                             <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold">姓名</td>
                             <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="100">金額</td>
@@ -107,7 +104,6 @@
                         <tbody>
                             @foreach($donations as $record)
                                 <tr>
-                                    <td class="px-2 py-1 border-b border-gray-200 text-right">{{ $record->hashid }}</td>
                                     <td class="px-2 py-1 border-b border-gray-200 text-center">
                                         @if(optional($record->getLastPaymentTime())->isCurrentMonth())
                                             <span class="oi" data-glyph="check"></span>
@@ -115,7 +111,7 @@
                                             <span class="oi text-yellow-500" data-glyph="warning" title="超過 2 個月未收到款項"></span>
                                         @endif
                                     </td>
-                                    <td class="px-2 py-1 border-b border-gray-200">{{ $record->name }}</td>
+                                    <td class="px-2 py-1 border-b border-gray-200" title="{{ $record->hashid }}">{{ $record->name }}</td>
                                     <td class="px-2 py-1 border-b border-gray-200 text-right">NT${{ number_format($record->amount) }}</td>
                                     <td class="px-2 py-1 border-b border-gray-200 text-right">{{ $record->created_at->format('Y-m-d H:i') }}</td>
                                     <td class="px-2 py-1 border-b border-gray-200 text-right">
