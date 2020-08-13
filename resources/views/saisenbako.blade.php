@@ -47,18 +47,16 @@
             <p>為了保持政治獨立性，我們不接受財團及政府的資助，所有贊助均來自工人和青年的贊助。有您的支持我們才能鬥爭到底！</p>
         </div>
 
-        <template x-if="form_errors.length">
-            <div class="notification is-danger">
-                <strong>您填寫的資料存在錯誤：</strong>
-                <template x-for="error in form_errors">
-                    <ul>
-                        <template x-for="message in error">
-                            <li>@{{ message }}</li>
-                        </template>
-                    </ul>
-                </template>
-            </div>
-        </template>
+        <div id="errors" class="px-4 py-2 mb-4 rounded bg-red-500 text-white" x-show="form_errors.length">
+            <strong>您填寫的資料存在錯誤：</strong>
+            <template x-for="error in form_errors">
+                <ul>
+                    <template x-for="message in error">
+                        <li x-text="message"></li>
+                    </template>
+                </ul>
+            </template>
+        </div>
 
         <form
             action="{{ url('payments') }}"
@@ -72,6 +70,7 @@
                     notyf.error('發生錯誤');
                     if ((error.response || {}).data) {
                       form_errors = Object.values(error.response.data.errors);
+                      window.location.assign('#errors')
                     }
                     submitting = false;
                   });
@@ -186,6 +185,8 @@
                             class="w-64 px-3 py-2 border border-gray-400 focus:border-blue-700 rounded bg-white"
                             type="number"
                             name="payment[amount]"
+                            min="50"
+                            max="10000"
                             placeholder="請填寫贊助金額"
                             x-model="payment.custom_amount"
                             value="500"

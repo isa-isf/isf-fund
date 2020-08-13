@@ -56,8 +56,16 @@ class DonationsController extends Controller
             'profile.email' => 'required|email',
             'profile.address' => 'required',
             'payment.type' => 'required|in:' . implode(',', DonationType::values()),
-            'payment.amount' => 'required|integer',
-            'payment.custom_amount' => 'required_if:amount,0',
+            'payment.amount' => 'required|integer|in:0,500,1000,2000,3000,4000,5000',
+            'payment.custom_amount' => 'required_if:amount,0|integer|min:50|max:10000',
+        ], [], [
+            'profile.name' => '姓名',
+            'profile.phone' => '電話',
+            'profile.email' => 'E-Mail',
+            'profile.address' => '地址',
+            'payment.type' => '贊助方式',
+            'payment.amount' => '贊助金額',
+            'payment.custom_amount' => '贊助金額',
         ]);
 
         $profile = $request->input('profile');
