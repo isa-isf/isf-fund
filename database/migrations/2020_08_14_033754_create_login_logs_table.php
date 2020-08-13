@@ -17,7 +17,7 @@ class CreateLoginLogsTable extends Migration
             $table->id();
 
             $table->string('email');
-            $table->enum('result', ['success', 'failed:unknown-user', 'failed:password', 'failed:challenge']);
+            $table->enum('result', ['success', 'challenging', 'failed:unknown-user', 'failed:password', 'failed:challenge']);
 
             $table->ipAddress('ip_address');
             $table->string('user_agent');
