@@ -2,14 +2,14 @@
 
 @section('content')
 <div class="container mx-auto px-6">
-    <div class="flex flex-col md:flex-row mb-6">
-        <div class="w-full md:w-1/4 flex flex-col mx-2">
-            <x-card title="目前有效每月定期定額" class="mb-4">
+    <div class="flex flex-col lg:flex-row mb-6">
+        <div class="w-full lg:w-1/3 xl:w-1/4 flex flex-col md:flex-row lg:flex-col lg:mx-2">
+            <x-card title="目前有效每月定期定額" class="w-full md:w-1/3 lg:w-full mb-4 mx-2 lg:mx-0">
                 <div class="text-right text-2xl">
                     NT${{ number_format($analytics['monthly']) }}
                 </div>
             </x-card>
-            <x-card title="" class="mb-4">
+            <x-card title="" class="w-full md:w-1/3 lg:w-full mb-4 mx-2 lg:mx-0">
                 <x-slot name="title">
                     本月已收月捐
                 </x-slot>
@@ -23,7 +23,7 @@
                 <div class="text-right text-base">
                 </div>
             </x-card>
-            <x-card title="" class="mb-4">
+            <x-card title="" class="w-full md:w-1/3 lg:w-full mb-4 mx-2 lg:mx-0">
                 <x-slot name="title">
                     本月預計 <small>(有效月捐 + 已收一次性)</small>
                 </x-slot>
@@ -91,10 +91,10 @@
             </h3>
 
             <div class="w-full overflow-x-auto">
-                <x-card class="w-full" style="min-width:770px">
+                <x-card class="w-full" style="min-width:600px">
                     <table class="w-full mb-6">
                         <thead><tr>
-                            <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-center" width="130">本月已收？</td>
+                            <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-center" width="60">收？</td>
                             <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold">姓名</td>
                             <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="100">金額</td>
                             <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="180">建立</td>
@@ -113,7 +113,7 @@
                                     </td>
                                     <td class="px-2 py-1 border-b border-gray-200" title="{{ $record->hashid }}">{{ $record->name }}</td>
                                     <td class="px-2 py-1 border-b border-gray-200 text-right">NT${{ number_format($record->amount) }}</td>
-                                    <td class="px-2 py-1 border-b border-gray-200 text-right">{{ $record->created_at->format('Y-m-d H:i') }}</td>
+                                    <td class="px-2 py-1 border-b border-gray-200 text-right">{{ $record->created_at->format('Y-m-d') }}</td>
                                     <td class="px-2 py-1 border-b border-gray-200 text-right">
                                         {{ optional($record->getLastPaymentTime())->format('n-d H:i') ?? '' }}
                                     </td>
