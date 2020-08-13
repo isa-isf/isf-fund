@@ -5,7 +5,7 @@
     <div class="flex flex-col lg:flex-row mb-6">
         <div class="w-full lg:w-1/3 xl:w-1/4 flex flex-col md:flex-row lg:flex-col lg:mx-2" x-data="{ show: false }">
             <x-card title="目前有效每月定期定額" class="w-full md:w-1/3 lg:w-full mb-4 mx-2 lg:mx-0">
-                <div class="text-right text-2xl" x-show="show">
+                <div class="text-right text-2xl" x-show="show" style="display:none">
                     NT${{ number_format($analytics['monthly']) }}
                 </div>
                 <div class="text-right text-2xl" x-show="!show" @click="show = true">
@@ -16,7 +16,7 @@
                 <x-slot name="title">
                     本月已收月捐
                 </x-slot>
-                <div class="text-right text-2xl" x-show="show">
+                <div class="text-right text-2xl" x-show="show" style="display:none">
                     NT${{ number_format($analytics['monthly_collected_amount']) }}
                 </div>
                 <div class="text-right text-2xl" x-show="!show" @click="show = true">
@@ -33,7 +33,7 @@
                 <x-slot name="title">
                     本月預計 <small>(有效月捐 + 已收一次性)</small>
                 </x-slot>
-                <div class="text-right text-2xl" x-show="show">
+                <div class="text-right text-2xl" x-show="show" style="display:none">
                     NT${{ number_format($analytics['monthly_collected_amount']) }}
                 </div>
                 <div class="text-right text-2xl" x-show="!show" @click="show = true">
