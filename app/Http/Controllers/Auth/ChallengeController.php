@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\LoginResult;
 use App\Http\Controllers\Controller;
+use App\Models\LoginLog;
 use App\Models\User;
 use App\Notifications\UserChallenge;
 use App\Providers\AuthServiceProvider;
@@ -49,6 +51,7 @@ final class ChallengeController extends Controller
         $code = $this->getCode($user, $this->getExpires());
 
         if (!hash_equals($code, $request->input('code'))) {
+            LoginLog::createFromRequest($request, $user, LoginResult::FAILED_CHALLENGE());
             throw ValidationException::withMessages([
                 'code' => ['驗證碼不正確'],
             ]);
@@ -56,6 +59,7 @@ final class ChallengeController extends Controller
 
         Auth::login($user, Session::get('challenging.remember'));
         Session::forget('challenging');
+        LoginLog::createFromRequest($request, $user, LoginResult::SUCCESS());
 
         return redirect(self::REDIRECT);
     }

@@ -60,15 +60,17 @@ final class LoginController extends Controller
 
         $user = User::where('email', $request->input('email'))->first();
         if ($user === null) {
-            LoginLog::createFromRequest($request, $user, LoginResult::FAILD_UNKNOWN_USER());
+            LoginLog::createFromRequest($request, $user, LoginResult::FAILED_UNKNOWN_USER());
             $this->incrementLoginAttempts($request);
             return $this->sendFailedLoginResponse($request);
         }
 
         if (!Hash::check($request->input('password'), $user->password)) {
-            LoginLog::createFromRequest($request, $user, LoginResult::FAILD_PASSWORD());
+            LoginLog::createFromRequest($request, $user, LoginResult::FAILED_PASSWORD());
             return $this->sendFailedLoginResponse($request);
         }
+
+        LoginLog::createFromRequest($request, $user, LoginResult::CHALLENGING());
 
         return $this->sendChallengeLoginResponse($request, $user);
     }
