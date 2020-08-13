@@ -16,10 +16,10 @@
     <link rel="stylesheet" href="{{ mix('assets/vendor/open-iconic/css/open-iconic.min.css') }}">
 </head>
 <body>
-    <header class="mb-4 bg-gray-200">
+    <header class="mb-4 bg-gray-200 border-t-4 border-red-500">
         <div class="container mx-auto px-6">
             <div class="flex items-stretch justify-between mx-2">
-                <a class="px-2 py-4 text-lg font-semibold text-gray-900 hover:text-gray-700" href="{{ url('manage') }}">
+                <a class="px-2 py-4 text-lg font-semibold text-gray-900 hover:text-gray-700 hover:bg-gray-100" href="{{ url('manage') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
 
