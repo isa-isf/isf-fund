@@ -9,7 +9,7 @@ use Binota\LaravelHashidHelpers\Concerns\GetHashid;
 use Binota\LaravelHashidHelpers\Concerns\HasHashid;
 use Binota\LaravelHashidHelpers\Concerns\HashidRouteBinding;
 use Binota\LaravelHashidHelpers\Concerns\QueryWithHashid;
-use Carbon\Carbon;
+use Carbon\CarbonInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -109,7 +109,7 @@ class Donation extends Model
         return $this->hasOne(Payment::class)->where('status', PaymentStatus::PAID())->latest();
     }
 
-    public function getLastPaymentTime(): ?Carbon
+    public function getLastPaymentTime(): ?CarbonInterface
     {
         return optional($this->latest_payment)->updated_at;
     }
