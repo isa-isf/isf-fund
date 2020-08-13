@@ -3,9 +3,10 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
 
-final class UserChallenge extends Notification
+final class UserChallenge extends Notification implements ShouldQueue
 {
     use Queueable;
 
