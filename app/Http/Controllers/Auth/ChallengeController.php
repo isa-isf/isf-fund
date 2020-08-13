@@ -81,7 +81,7 @@ final class ChallengeController extends Controller
             ->addSeconds(self::EXPIRES);
     }
 
-    private function getCode(User $user, CarbonInterface $expires)
+    private function getCode(User $user, CarbonInterface $expires): string
     {
         $cacheKey = "{$user->id}:challenging:{$expires}";
 
