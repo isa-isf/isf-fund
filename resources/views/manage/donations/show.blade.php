@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.manage')
 
 @section('title', e($donation->name) . ": 捐款#{$donation->hashid}")
 
