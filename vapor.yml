@@ -13,6 +13,8 @@ environments:
             - 'php artisan event:cache'
             - 'npm ci'
             - 'npm run prod && rm -rf node_modules'
+        deploy:
+            - 'php artisan migrate --force'
     staging:
         runtime: php-7.4
         memory: 1024
@@ -24,3 +26,5 @@ environments:
             - 'php artisan event:cache'
             - 'npm ci'
             - 'npm run dev && rm -rf node_modules'
+        deploy:
+            - 'php artisan migrate --force'
