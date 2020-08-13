@@ -63,4 +63,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function login_logs()
+    {
+        return $this->hasMany(LoginLog::class)->latest();
+    }
+
+    public function routeNotificationForSms()
+    {
+        return $this->phone;
+    }
 }

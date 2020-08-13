@@ -40,4 +40,10 @@ return [
         'hash_key' => env('ECPAY_HASH_KEY', '5294y06JbISpM5x9'),
         'hash_iv' => env('ECPAY_HASH_IV', 'v77hoKGq4kWxNNIS'),
     ],
+
+    'sns' => [
+        'key' => env('AWS_ACCESS_KEY_ID'),
+        'secret' => env('AWS_SECRET_ACCESS_KEY'),
+        'region' => env('SNS_REGION', 'us-east-1'),
+    ],
 ];

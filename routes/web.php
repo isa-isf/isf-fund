@@ -34,6 +34,9 @@ Auth::routes([
     'verify' => false,
 ]);
 
+Route::get('/challenge', [C\Auth\ChallengeController::class, 'form'])->name('challenge');
+Route::post('/challenge', [C\Auth\ChallengeController::class, 'confirm'])->name('challenge');
+
 Route::group(['middleware' => ['signed']], static function () {
     Route::get('/users/{user}/password-setup', [C\Auth\PasswordSetupController::class, 'form'])->name('password-setup');
     Route::post('/users/{user}/password', [C\Auth\PasswordSetupController::class, 'store'])->name('password-setup-store');
