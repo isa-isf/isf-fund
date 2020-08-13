@@ -19,29 +19,29 @@
 <body>
     <header class="mb-4 bg-gray-200 border-t-4 border-red-500">
         <div class="container mx-auto px-6">
-            <div class="flex items-stretch justify-between mx-2">
-                <div class="flex">
-                    <a class="px-2 py-4 mr-4 text-lg font-semibold text-gray-900 hover:text-gray-700 hover:bg-gray-100" href="{{ url('manage') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
+            <div class="flex flex-col md:flex-row flex-wrap items-stretch justify-between mx-2">
+                <a class="flex-shrink px-2 py-4 mr-4 text-lg font-semibold text-gray-900 hover:text-gray-700 hover:bg-gray-100" href="{{ url('manage') }}">
+                    {{ config('app.name', 'Laravel') }}
+                </a>
 
+                <div class="flex-grow flex justify-between">
                     @auth
-                        <a href="{{ url('manage/income-report') }}" class="flex items-center px-2 text-gray-900 hover:bg-gray-100">
-                            <span class="oi mr-1" data-glyph="graph"></span>
-                            收款報表
-                        </a>
+                        <nav class="flex items-stretch">
+                            <a href="{{ url('manage/income-report') }}" class="flex items-center p-2 text-gray-900 hover:bg-gray-100">
+                                <span class="oi mr-1" data-glyph="graph"></span>
+                                收款報表
+                            </a>
+                        </nav>
+
+                        <nav class="flex items-stretch">
+                            <a href="{{ url('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit()" class="flex items-center p-2 text-gray-900 hover:bg-gray-100">登出</a>
+
+                            <form id="logout-form" class="hidden" action="{{ url('logout') }}" method="post">
+                                @csrf
+                            </div>
+                        </nav>
                     @endauth
                 </div>
-
-                <nav class="flex items-stretch">
-                    @auth
-                        <a href="{{ url('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit()" class="flex items-center px-2 text-gray-900 hover:bg-gray-100">登出</a>
-
-                        <form id="logout-form" class="hidden" action="{{ url('logout') }}" method="post">
-                            @csrf
-                        </div>
-                    @endauth
-                </nav>
             </div>
         </div>
     </header>
