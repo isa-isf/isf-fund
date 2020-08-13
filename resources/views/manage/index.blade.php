@@ -103,7 +103,7 @@
                         </tr></thead>
                         <tbody>
                             @foreach($donations as $record)
-                                <tr>
+                                <tr class="hover:bg-gray-100">
                                     <td class="px-2 py-1 border-b border-gray-200 text-center">
                                         @if(optional($record->getLastPaymentTime())->isCurrentMonth())
                                             <span class="oi" data-glyph="check"></span>
