@@ -5,6 +5,7 @@ namespace App\Channels;
 use App\Models\User;
 use Aws\Sns\SnsClient;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Log;
 
 final class AwsSnsChannel
 {
@@ -31,6 +32,11 @@ final class AwsSnsChannel
         }
         if (empty($content)) {
             throw new \RuntimeException('No content');
+        }
+
+        if (app()->isLocal()) {
+            Log::info("[SMS: {$to}] {$content}");
+            return;
         }
 
         return $this->client->publish([
