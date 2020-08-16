@@ -7,6 +7,7 @@ use App\Enums\DonationType;
 use App\Enums\PaymentStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Donation;
+use App\Models\DonationLatestPaymentRelationship;
 use App\Models\Payment;
 use App\Services\Ecpay;
 use Illuminate\Database\Eloquent\Builder;
@@ -43,6 +44,9 @@ class CallbackController extends Controller
         $payment->save();
 
         $donation->status = DonationStatus::ACTIVE();
+        if (PaymentStatus::PAID()->equals($payment->status)) {
+            $donation->latest_payment_id = $payment->id;
+        }
         $donation->save();
 
         return '1|OK';
@@ -73,6 +77,9 @@ class CallbackController extends Controller
             case DonationType::MONTHLY()->equals($donation->type):
             default:
                 $donation->status = DonationStatus::ACTIVE();
+        }
+        if (PaymentStatus::PAID()->equals($payment->status)) {
+            $donation->latest_payment_id = $payment->id;
         }
         $donation->save();
 

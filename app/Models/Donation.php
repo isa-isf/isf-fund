@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Enums\DonationStatus;
 use App\Enums\DonationType;
-use App\Enums\PaymentStatus;
 use Binota\LaravelHashidHelpers\Concerns\GetHashid;
 use Binota\LaravelHashidHelpers\Concerns\HasHashid;
 use Binota\LaravelHashidHelpers\Concerns\HashidRouteBinding;
@@ -12,7 +11,6 @@ use Binota\LaravelHashidHelpers\Concerns\QueryWithHashid;
 use Carbon\CarbonInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -29,6 +27,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $count
  * @property float $amount
  * @property string $message
+ * @property int|null $latest_payment_id
  * @property string|null $archive_at
  * @property \Carbon\CarbonImmutable|null $created_at
  * @property \Carbon\CarbonImmutable|null $updated_at
@@ -54,6 +53,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation whereHashidKey($hashId)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation whereLatestPaymentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation whereMessage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Donation wherePhone($value)
@@ -104,9 +104,9 @@ class Donation extends Model
         return $this->hasMany(Payment::class)->latest();
     }
 
-    public function latest_payment(): HasOne
+    public function latest_payment()
     {
-        return $this->hasOne(Payment::class)->where('status', PaymentStatus::PAID())->latest();
+        return $this->hasOne(Payment::class, 'id', 'latest_payment_id');
     }
 
     public function getLastPaymentTime(): ?CarbonInterface
