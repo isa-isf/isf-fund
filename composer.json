@@ -5,7 +5,7 @@
     "license": "proprietary",
     "type": "project",
     "require": {
-        "php": "^7.4",
+        "php": "^8.0",
         "aws/aws-sdk-php": "^3.148",
         "binota/laravel-hashid-helpers": "^0.1.0",
         "doctrine/dbal": "^2.10",
@@ -22,9 +22,9 @@
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",
         "barryvdh/laravel-ide-helper": "^2.7",
-        "caouecs/laravel-lang": "~7.0",
+        "laravel-lang/lang": "~8.0",
         "facade/ignition": "^2.3",
-        "fzaninotto/faker": "^1.4",
+        "fakerphp/faker": "^1.13",
         "laravel/tinker": "^2.4",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^4.2",

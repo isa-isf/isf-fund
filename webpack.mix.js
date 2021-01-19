@@ -18,3 +18,4 @@ mix.copy('node_modules/open-iconic/font/css/open-iconic.min.css', 'public/assets
 mix.copy('node_modules/open-iconic/font/fonts', 'public/assets/vendor/open-iconic/fonts/');
 
 mix.version();
+
