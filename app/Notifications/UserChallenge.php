@@ -24,6 +24,7 @@ final class UserChallenge extends Notification implements ShouldQueue
 
     public function toSms($notifiable)
     {
-        return '[ISF] 簡訊驗證碼 ' . $this->code . '，15 分鐘內有效';
+        $host = parse_url(url(''), PHP_URL_HOST);
+        return $this->code . ' 是你的 ' . config('app.name') . ' 驗證碼，15 分鐘內有效。' . "\n\n@{$host} #{$this->code}";
     }
 }
