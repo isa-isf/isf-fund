@@ -24,7 +24,11 @@
                 </div>
                 <div class="text-right text-base text-gray-800">
                     <span class="mr-1">{{ $analytics['monthly_collected_count'] }} / {{ $donations->count() }} 人</span> |
-                    {{ round($analytics['monthly_collected_amount'] / $analytics['monthly'] * 100, 2) }}%
+                    @if ($analytics['monthly'])
+                        {{ round($analytics['monthly_collected_amount'] / $analytics['monthly'] * 100, 2) }}%
+                    @else
+                        0%
+                    @endif
                 </div>
                 <div class="text-right text-base">
                 </div>
