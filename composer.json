@@ -2,7 +2,7 @@
     "name": "isf/isf-saisen",
     "description": "Fund page for ISF",
     "keywords": ["fund", "donation", "isf"],
-    "license": "proprietary",
+    "license": "AGPL-3.0",
     "type": "project",
     "require": {
         "php": "^8.0",
