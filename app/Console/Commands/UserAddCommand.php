@@ -13,7 +13,7 @@ class UserAddCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'user:add {--name=} {--email=}';
+    protected $signature = 'user:add {--name=} {--email=} {--phone=}';
 
     /**
      * The console command description.
@@ -31,8 +31,9 @@ class UserAddCommand extends Command
     {
         $user = new User;
 
-        $user->name = $this->option('name') ?: $this->ask('What\'s the name of user');
-        $user->email = $this->option('email') ?: $this->ask('What\'s the E-Mail of user');
+        $user->name = $this->option('name') ?: $this->ask('Full name');
+        $user->email = $this->option('email') ?: $this->ask('E-Mail');
+        $user->phone = $this->option('phone') ?: $this->ask('Cellphone');
         $user->password = '';
 
         $user->save();
