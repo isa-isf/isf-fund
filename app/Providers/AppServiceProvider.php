@@ -20,8 +20,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Paginator::useTailwind();
-
         Date::use(CarbonImmutable::class);
         Date::macro('when', function (bool $condition, callable $callback) {
             return $condition ? $callback($this) : $this;
