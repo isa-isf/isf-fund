@@ -16,30 +16,30 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $id
  * @property int $status
  * @property int $donation_id
- * @property float $amount
+ * @property string $amount
  * @property \Carbon\CarbonImmutable|null $created_at
  * @property \Carbon\CarbonImmutable|null $updated_at
  * @property \Carbon\CarbonImmutable|null $deleted_at
  * @property-read \App\Models\Donation $donation
  * @property-read mixed $hashid
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment findHashid($hashId, $columns = [])
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment findHashidOrFail($hashId, $columns = [])
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment findHashidOrNew($hashId, $columns = [])
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment findManyHashid($hashIds, $columns = [])
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment newQuery()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Payment onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereAmount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereDonationId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereHashidKey($hashId)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Payment withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Payment withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment findHashid($hashId, $columns = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment findHashidOrFail($hashId, $columns = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment findHashidOrNew($hashId, $columns = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment findManyHashid($hashIds, $columns = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Payment onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereDonationId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereHashidKey($hashId)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Payment withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Payment withoutTrashed()
  * @mixin \Eloquent
  */
 class Payment extends Model

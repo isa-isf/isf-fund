@@ -14,6 +14,7 @@ use Illuminate\Notifications\Notifiable;
  * App\Models\User
  *
  * @property int $id
+ * @property int $is_active
  * @property string $name
  * @property string $email
  * @property string $phone
@@ -26,22 +27,23 @@ use Illuminate\Notifications\Notifiable;
  * @property-read int|null $login_logs_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User findHashid($hashId, $columns = [])
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User findHashidOrFail($hashId, $columns = [])
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User findHashidOrNew($hashId, $columns = [])
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User findManyHashid($hashIds, $columns = [])
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereHashidKey($hashId)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePhone($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User findHashid($hashId, $columns = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|User findHashidOrFail($hashId, $columns = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|User findHashidOrNew($hashId, $columns = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|User findManyHashid($hashIds, $columns = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereHashidKey($hashId)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereIsActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class User extends Authenticatable

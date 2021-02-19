@@ -58,7 +58,7 @@ final class LoginController extends Controller
             return $this->sendLockoutResponse($request);
         }
 
-        $user = User::where('email', $request->input('email'))->first();
+        $user = User::where('email', $request->input('email'))->whereIsActive(true)->first();
         if ($user === null) {
             LoginLog::createFromRequest($request, $user, LoginResult::FAILED_UNKNOWN_USER());
             $this->incrementLoginAttempts($request);

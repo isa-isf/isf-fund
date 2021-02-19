@@ -11,24 +11,24 @@ use Illuminate\Http\Request;
  *
  * @property int $id
  * @property string $email
- * @property \App\Enums\LoginResult $result
+ * @property LoginResult $result
  * @property string $ip_address
  * @property string $user_agent
  * @property int|null $user_id
  * @property \Carbon\CarbonImmutable|null $created_at
  * @property \Carbon\CarbonImmutable|null $updated_at
  * @property-read \App\Models\User|null $user
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\LoginLog newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\LoginLog newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\LoginLog query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\LoginLog whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\LoginLog whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\LoginLog whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\LoginLog whereIpAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\LoginLog whereResult($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\LoginLog whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\LoginLog whereUserAgent($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\LoginLog whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LoginLog newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|LoginLog newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|LoginLog query()
+ * @method static \Illuminate\Database\Eloquent\Builder|LoginLog whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LoginLog whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LoginLog whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LoginLog whereIpAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LoginLog whereResult($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LoginLog whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LoginLog whereUserAgent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LoginLog whereUserId($value)
  * @mixin \Eloquent
  */
 class LoginLog extends Model
