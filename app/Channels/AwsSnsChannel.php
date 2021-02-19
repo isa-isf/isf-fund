@@ -20,7 +20,7 @@ final class AwsSnsChannel
      *
      * @param \Illuminate\Notifications\Notifiable|\App\Models\User $notifable
      * @param Notification $notification
-     * @return void
+     * @return \Aws\Result|void
      */
     public function send($notifiable, Notification $notification)
     {
@@ -39,6 +39,11 @@ final class AwsSnsChannel
             return;
         }
 
+        $this->client->setSMSAttributes([
+            'attributes' => [
+                'DefaultSMSType' => 'Transactional',
+            ],
+        ]);
         return $this->client->publish([
             'Message' => $content,
             'PhoneNumber' => $to,
