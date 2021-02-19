@@ -1,5 +1,5 @@
-id: 12461
-name: isf-saisen
+id: 18369
+name: isf-fund
 environments:
     production:
         runtime: php-8.0:al2
@@ -7,7 +7,7 @@ environments:
         cli-memory: 512
         concurrency: 7
         database: neko-senpai
-        domain: fund.socialism.org.tw
+        domain: fund.revolution.tw
         build:
             - 'composer install --no-dev --classmap-authoritative'
             - 'php artisan event:cache'
