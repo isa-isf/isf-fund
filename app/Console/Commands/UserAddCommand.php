@@ -31,6 +31,7 @@ class UserAddCommand extends Command
     {
         $user = new User;
 
+        $user->is_active = true;
         $user->name = $this->option('name') ?: $this->ask('Full name');
         $user->email = $this->option('email') ?: $this->ask('E-Mail');
         $user->phone = $this->option('phone') ?: $this->ask('Cellphone');
