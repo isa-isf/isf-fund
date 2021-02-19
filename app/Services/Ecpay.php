@@ -17,14 +17,14 @@ class Ecpay
     public const ENCRYPT_TYPE_SHA256 = '1';
 
     protected const DOT_NET_URL_ENCODE_TABLE = [
-        '%2d' => '-',
-        '%5f' => '_',
-        '%2e' => '.',
+        '%20' => '+',
         '%21' => '!',
-        '%2a' => '*',
         '%28' => '(',
         '%29' => ')',
-        '%20' => '+',
+        '%2a' => '*',
+        '%2d' => '-',
+        '%2e' => '.',
+        '%5f' => '_',
     ];
 
     protected const STAGE_MERCHANT_IDS = [
@@ -84,27 +84,29 @@ class Ecpay
 
     public function generateCheckSum(array $data, string $type = null): string
     {
-        $data = Arr::except($data, 'CheckMacValue');
-        ksort($data);
-        $str = implode('&', array_map(function ($key, $value) {
-            return "{$key}=" . ($value ?? '');
-        }, array_keys($data), array_values($data)));
-        $str = 'HashKey=' . $this->hash_key . '&' . $str;
-        $str .= '&HashIV=' . $this->hash_iv;
-        $str = strtolower(urlencode($str));
-        $str = str_replace(array_keys(self::DOT_NET_URL_ENCODE_TABLE), array_values(self::DOT_NET_URL_ENCODE_TABLE), $str);
-
-        switch ('' . ($type ?? optional($data)['EncryptType'])) {
-            case '0':
-                $hash = md5($str);
-                break;
-            default:
-            case '1':
-                $hash = hash('sha256', $str);
-                break;
-        }
-
-        return strtoupper($hash);
+        return Str
+            ::of(
+                collect($data)
+                    ->except(['CheckMacValue', 'HashKey', 'HashIV'])
+                    ->sortKeys()
+                    ->map(static fn ($v, $k) => "{$k}={$v}")
+                    ->values()
+                    ->join('&')
+            )
+            ->prepend('HashKey=' . $this->hash_key . '&')
+            ->append('&HashIV=' . $this->hash_iv)
+            ->pipe('urlencode')
+            ->lower()
+            ->replace(
+                array_keys(self::DOT_NET_URL_ENCODE_TABLE),
+                array_values(self::DOT_NET_URL_ENCODE_TABLE)
+            )
+            ->when(
+                $type ?? $data['EncryptType'] ?? '1',
+                static fn ($str) => Str::of(hash('sha256', $str)),
+                static fn ($str) => Str::of(md5($str))
+            )
+            ->upper();
     }
 
     public function getFullUrl(string $path): string
