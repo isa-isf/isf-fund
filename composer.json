@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
         "laravel/vapor-core": "^2.10.1",
+        "laravel/vapor-ui": "^1.0",
         "myclabs/php-enum": "^1.7",
         "ramsey/uuid": "^4.1"
     },
