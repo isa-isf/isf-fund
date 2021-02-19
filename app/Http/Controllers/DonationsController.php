@@ -73,7 +73,7 @@ class DonationsController extends Controller
 
         $donation = new Donation;
         $donation->status = DonationStatus::CREATED();
-        $donation->uuid = Uuid::uuid4()->toString();
+        $donation->uuid = Uuid::uuid4()->getHex();
         $donation->name = $profile['name'] ?? '';
         $donation->phone = $profile['phone'] ?? '';
         $donation->email = $profile['email'] ?? '';
