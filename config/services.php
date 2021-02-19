@@ -19,6 +19,10 @@ return [
         'secret' => env('MAILGUN_SECRET'),
     ],
 
+    'nexmo' => [
+        'sms_from' => env('NEXMO_FROM'),
+    ],
+
     'ses' => [
         'key' => env('SES_KEY'),
         'secret' => env('SES_SECRET'),

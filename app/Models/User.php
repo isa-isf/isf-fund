@@ -75,7 +75,7 @@ class User extends Authenticatable
         return $this->hasMany(LoginLog::class)->latest();
     }
 
-    public function routeNotificationForSms()
+    public function routeNotificationForNexmo()
     {
         return $this->phone;
     }
