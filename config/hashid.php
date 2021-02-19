@@ -37,6 +37,14 @@ return [
             'inverse' => env('OPTIMUS_INVERSE'),
             'random' => env('OPTIMUS_RANDOM', 0),
         ],
+        'donation' => [
+            'driver' => 'hashids',
+            'salt' => env('HASHID_DONATION_SALT'),
+        ],
+        'payment' => [
+            'driver' => 'hashids',
+            'salt' => env('HASHID_PAYMENT_SALT'),
+        ],
     ],
 
 ];

@@ -71,6 +71,8 @@ class Donation extends Model
     use HasHashid, GetHashid, QueryWithHashid;
     use HashidRouteBinding;
 
+    protected $hashidConnection = 'donation';
+
     public function setStatusAttribute(DonationStatus $value)
     {
         $this->attributes['status'] = $value;

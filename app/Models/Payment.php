@@ -47,6 +47,8 @@ class Payment extends Model
     use SoftDeletes;
     use HasHashid, GetHashid, QueryWithHashid;
 
+    protected $hashidConnection = 'payment';
+
     public function setStatusAttribute(PaymentStatus $value)
     {
         $this->attributes['status'] = $value;
