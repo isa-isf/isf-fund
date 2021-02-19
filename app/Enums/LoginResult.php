@@ -16,6 +16,6 @@ final class LoginResult extends Enum
     private const SUCCESS = 'success';
     private const CHALLENGING = 'challenging';
     private const FAILED_PASSWORD = 'failed:password';
-    private const FAILED_UNKOWN_USER = 'failed:unknown-user';
+    private const FAILED_UNKNOWN_USER = 'failed:unknown-user';
     private const FAILED_CHALLENGE = 'failed:password';
 }
