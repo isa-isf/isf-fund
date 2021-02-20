@@ -66,7 +66,7 @@ class CallbackController extends Controller
         }
 
         /** @var \App\Models\Payment $payment */
-        $payment = $donation->payments()->orderBy('id')->firstOrFail();
+        $payment = $donation->payments()->orderByDesc('id')->firstOrFail();
         $payment->status = $reqs->input('RtnCode') === '1' ? PaymentStatus::PAID() : PaymentStatus::FAILED();
         $payment->save();
 
