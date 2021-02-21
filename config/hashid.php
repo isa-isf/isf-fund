@@ -40,10 +40,12 @@ return [
         'donation' => [
             'driver' => 'hashids',
             'salt' => env('HASHID_DONATION_SALT'),
+            'alphabet' => '3456789abcdefghjkmnpqrstuvwxy',
         ],
         'payment' => [
             'driver' => 'hashids',
             'salt' => env('HASHID_PAYMENT_SALT'),
+            'alphabet' => '3456789abcdefghjkmnpqrstuvwxy',
         ],
     ],
 
