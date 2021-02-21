@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>贊助支持我們 | 國際社會主義前進 International Socialist Forward</title>
+    <title>贊助支持我們 | 國際社會主義道路 International Socialist Alternative</title>
 
     <link rel="stylesheet" href="{{ mix('assets/css/app.css') }}">
 </head>
@@ -31,8 +31,8 @@
     ]) }}"
 >
     <section class="lg:w-2/5 py-10 px-8 bg-red-600 text-white lg:text-right">
-        <h2 class="text-4xl">國際社會主義前進</h2>
-        <h3 class="text-md">International Socialist Forward</h3>
+        <h2 class="text-4xl">國際社會主義道路</h2>
+        <h3 class="text-md">International Socialist Alternative</h3>
     </section>
     <main class="lg:w-3/5 py-10 px-8 flex flex-col">
         <h1 class="mb-2 text-4xl font-semibold">贊助支持我們</h1>
@@ -43,7 +43,7 @@
                     請注意：雖然本表單頁面可在無 JavaScript 的環境下正常運作，但金流平台的頁面（我們使用<a href="https://www.ecpay.com.tw/" target="_blank">綠界科技</a>）必須啟用 JavaScript 才可使用。
                 </p>
             </noscript>
-            <p>《國際社會主義前進》志於建立一個工人階級鬥爭組織。在各樣的群眾運動中，提出我們致勝的綱領與訴求，並參與實際鬥爭以爭取群眾支持。我們需要您的贊助支持 <span class="text-gray-500 text-xs">[* 註]</span>！用於抗爭運動與日常會議之中。對於我們的長期發展而言，如有您穩定的贊助與支持，亦能讓我們能有穩定的運作。</p>
+            <p>《國際社會主義道路》志於建立一個工人階級鬥爭組織。在各樣的群眾運動中，提出我們致勝的綱領與訴求，並參與實際鬥爭以爭取群眾支持。我們需要您的贊助支持 <span class="text-gray-500 text-xs">[* 註]</span>！用於抗爭運動與日常會議之中。對於我們的長期發展而言，如有您穩定的贊助與支持，亦能讓我們能有穩定的運作。</p>
             <p>為了保持政治獨立性，我們不接受財團及政府的資助，所有贊助均來自工人和青年的贊助。有您的支持我們才能鬥爭到底！</p>
         </div>
 
