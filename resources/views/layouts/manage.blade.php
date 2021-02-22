@@ -7,9 +7,9 @@
     <meta name="robots" content="noindex, nofollow">
 
     @if(View::hasSection('title'))
-        <title>@yield('title') - 國際社會主義前進籌款系統</title>
+        <title>@yield('title') - {{ config('app.name') }}</title>
     @else
-        <title>國際社會主義前進籌款系統</title>
+        <title>{{ config('app.name') }}</title>
     @endif
 
     <link rel="stylesheet" href="{{ mix('assets/css/app.css') }}">
