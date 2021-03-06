@@ -14,6 +14,7 @@
     id="app"
     class=" min-h-screen flex flex-col md:flex-row"
     x-data="{{ json_encode([
+        'showMore' => false,
         'profile' => [
             'name' => old('profile.name', ''),
             'phone' => old('profile.phone', ''),
@@ -216,28 +217,6 @@
                 </div>
             </div>
 
-            <div class="flex flex-col mb-4" x-show="payment.type === '{{ \App\Enums\DonationType::MONTHLY()->getValue() }}'">
-                <label for="payment-count" class="mb-2">贊助期數 (月)<small class="text-red-400">*</small></label>
-
-                <div class="inline-block relative w-64">
-                    <select
-                        id="payment-count"
-                        class="block appearance-none w-full px-3 py-2 pr-8 border border-gray-400 rounded focus:border-blue-700 bg-white"
-                        name="payment[count]"
-                        x-model="payment.count"
-                    >
-                        <option value="12">12 期</option>
-                        <option value="24">24 期</option>
-                        <option value="36">36 期</option>
-                        <option value="48">48 期</option>
-                        <option value="99">99 期</option>
-                    </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                    </div>
-                </div>
-            </div>
-
             <div class="flex flex-col mb-4">
                 <label for="payment-message" class="mb-2">留言</label>
 
@@ -249,6 +228,46 @@
                     x-model="payment.message"
                 ></textarea>
             </div>
+
+            <template x-if="!showMore && payment.type === '{{ \App\Enums\DonationType::MONTHLY()->getValue() }}'">
+                <div class="flex mb-4">
+                    <button type="button" class="inline-flex items-center text-xs text-gray-700 hover:text-gray-600 hover:underline" @click="showMore = !showMore">
+                        填寫更多資料<svg class="w-2 h-2 no-underline" fill="none" stroke="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                </div>
+            </template>
+
+            <template x-if="showMore && payment.type === '{{ \App\Enums\DonationType::MONTHLY()->getValue() }}'">
+                <div class="flex mb-4">
+                    <button type="button" class="inline-flex items-center text-xs text-gray-700 hover:text-gray-600 hover:underline" @click="showMore = !showMore">
+                        填寫更少資料<svg class="w-2 h-2 no-underline" fill="none" stroke="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+                    </button>
+                </div>
+            </template>
+
+            <template x-if="showMore && payment.type === '{{ \App\Enums\DonationType::MONTHLY()->getValue() }}'">
+                <div class="flex flex-col mb-4">
+                    <label for="payment-count" class="mb-2">贊助期數 (月)<small class="text-red-400">*</small></label>
+
+                    <div class="inline-block relative w-64">
+                        <select
+                            id="payment-count"
+                            class="block appearance-none w-full px-3 py-2 pr-8 border border-gray-400 rounded focus:border-blue-700 bg-white"
+                            name="payment[count]"
+                            x-model="payment.count"
+                        >
+                            <option value="12">12 期</option>
+                            <option value="24">24 期</option>
+                            <option value="36">36 期</option>
+                            <option value="48">48 期</option>
+                            <option value="99">99 期</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </template>
 
             <div class="mb-4">
                 <noscript>
