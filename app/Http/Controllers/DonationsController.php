@@ -9,6 +9,7 @@ use App\Models\Payment;
 use App\Services\Ecpay;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Ramsey\Uuid\Uuid;
 
 class DonationsController extends Controller
@@ -57,6 +58,7 @@ class DonationsController extends Controller
             'profile.address' => 'required',
             'payment.type' => 'required|in:' . implode(',', DonationType::values()),
             'payment.amount' => 'required|integer|in:0,500,1000,2000,3000,4000,5000',
+            'payment.count' => ['required', 'integer', Rule::in(['12', '24', '36', '48', '99'])],
             'payment.custom_amount' => 'required_if:amount,0|integer|min:50|max:10000',
         ], [], [
             'profile.name' => '姓名',
@@ -65,6 +67,7 @@ class DonationsController extends Controller
             'profile.address' => '地址',
             'payment.type' => '贊助方式',
             'payment.amount' => '贊助金額',
+            'payment.count' => '贊助期數',
             'payment.custom_amount' => '贊助金額',
         ]);
 
@@ -79,7 +82,11 @@ class DonationsController extends Controller
         $donation->email = $profile['email'] ?? '';
         $donation->address = $profile['address'] ?? '';
         $donation->type = new DonationType($payment['type'] ?? 'monthly');
-        $donation->count = 99;
+        if (DonationType::MONTHLY()->equals($donation->type)) {
+            $donation->count =  $payment['count'] ?: 99;
+        } else {
+            $donation->count =  1;
+        }
         $donation->amount = $payment['amount'] ?: $payment['custom_amount'];
         $donation->message = $payment['message'] ?? '';
         $donation->save();
