@@ -24,7 +24,7 @@ class PasswordSetupController extends Controller
         abort_if(!empty($user->password), 403);
 
         $this->validate($request, [
-            'password' => 'min:8|confirmed',
+            'password' => ['min:8', 'confirmed'],
         ]);
 
         $user->password = Hash::make($request->input('password'));
