@@ -25,8 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command(Commands\DonationInvalidateCommand::class)->daily();
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command(Commands\PaymentUpdateResultCommand::class)->twiceDaily();
     }
 
     /**
