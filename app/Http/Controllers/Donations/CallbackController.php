@@ -41,6 +41,7 @@ class CallbackController extends Controller
         // create new payment
         $payment = Payment::createFromDonation($donation);
         $payment->status = $reqs->input('RtnCode') === '1' ? PaymentStatus::PAID() : PaymentStatus::FAILED();
+        $payment->gateway_id = $reqs->input('TradeNo');
         $payment->save();
 
         $donation->status = DonationStatus::ACTIVE();
@@ -67,16 +68,18 @@ class CallbackController extends Controller
 
         /** @var \App\Models\Payment $payment */
         $payment = $donation->payments()->orderByDesc('id')->firstOrFail();
+        $payment->gateway_id = $reqs->input('TradeNo');
         $payment->status = $reqs->input('RtnCode') === '1' ? PaymentStatus::PAID() : PaymentStatus::FAILED();
         $payment->save();
 
         switch (true) {
             case DonationType::ONE_TIME()->equals($donation->type):
                 $donation->status = DonationStatus::INACTIVE();
-                // no break
+                break;
             case DonationType::MONTHLY()->equals($donation->type):
             default:
                 $donation->status = DonationStatus::ACTIVE();
+                break;
         }
         if (PaymentStatus::PAID()->equals($payment->status)) {
             $donation->latest_payment_id = $payment->id;

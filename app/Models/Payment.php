@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property int $id
  * @property int $status
+ * @property string $gateway_id
  * @property int $donation_id
  * @property string $amount
  * @property \Carbon\CarbonImmutable|null $created_at
@@ -34,6 +35,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|Payment whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Payment whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Payment whereDonationId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereGatewayId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Payment whereHashidKey($hashId)
  * @method static \Illuminate\Database\Eloquent\Builder|Payment whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Payment whereStatus($value)
