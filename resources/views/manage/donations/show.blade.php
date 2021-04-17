@@ -80,6 +80,7 @@
                     <ol class="list-decimal pl-6">
                         @foreach($donation->payments as $payment)
                             <li>
+                                [{{ $payment->hashid }}]
                                 @if(\App\Enums\PaymentStatus::PAID()->equals($payment->status))
                                     [已付款]
                                 @elseif(\App\Enums\PaymentStatus::CREATED()->equals($payment->status))
