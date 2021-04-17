@@ -25,13 +25,14 @@
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",
         "barryvdh/laravel-ide-helper": "^2.9",
-        "laravel-lang/lang": "~8.0",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.13",
+        "laravel-lang/lang": "~8.0",
         "mockery/mockery": "^1.4",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3",
-        "roave/security-advisories": "dev-latest"
+        "roave/security-advisories": "dev-latest",
+        "spatie/laravel-ray": "^1.17"
     },
     "autoload": {
         "psr-4": {
