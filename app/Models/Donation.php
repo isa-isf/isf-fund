@@ -73,6 +73,20 @@ class Donation extends Model
 
     protected $hashidConnection = 'donation';
 
+    protected $fillable = [
+        'status',
+        'uuid',
+        'name',
+        'phone',
+        'email',
+        'address',
+        'type',
+        'count',
+        'amount',
+        'message',
+        'latest_payment_id',
+    ];
+
     public function setStatusAttribute(DonationStatus $value)
     {
         $this->attributes['status'] = $value;
@@ -114,5 +128,12 @@ class Donation extends Model
     public function getLastPaymentTime(): ?CarbonInterface
     {
         return optional($this->latest_payment)->updated_at;
+    }
+
+    public function updateLatestPayment(): void
+    {
+        $latest = $this->payments()->latest()->first();
+
+        $this->update(['latest_payment_id' => $latest?->id]);
     }
 }
