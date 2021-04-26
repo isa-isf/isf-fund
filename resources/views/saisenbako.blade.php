@@ -201,7 +201,7 @@
             <div class="flex flex-col mb-4">
                 <label for="payment-type" class="mb-2">贊助方式 <small class="text-red-400">*</small></label>
 
-                <div class="inline-block relative w-64">
+                <div class="inline-block relative w-64 mb-2">
                     <select
                         id="payment-type"
                         class="block appearance-none w-full px-3 py-2 pr-8 border border-gray-400 rounded focus:border-blue-700 bg-white"
@@ -215,6 +215,8 @@
                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                     </div>
                 </div>
+
+                <div class="text-gray-500">贊助方式選擇「每月定期」僅支援「信用卡」付款。若選擇「一次性贊助」可使用網路 ATM、ATM、超商代碼繳款等付款方式。</div>
             </div>
 
             <div class="flex flex-col mb-4">

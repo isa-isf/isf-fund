@@ -17,6 +17,7 @@ Route::get('/', [C\FrontpageController::class, '__invoke']);
 
 Route::get('/donations/{uuid}/checkout', [C\DonationsController::class, 'checkout']);
 Route::post('/_/donations', [C\DonationsController::class, 'store']);
+Route::post('/donations/{uuid}/payment-info', [C\Donations\CallbackController::class, 'paymentInfo']);
 Route::post('/donations/{uuid}/first-callback', [C\Donations\CallbackController::class, 'first']);
 Route::post('/donations/{uuid}/period-callback', [C\Donations\CallbackController::class, 'period']);
 

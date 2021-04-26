@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $id
  * @property string $status
  * @property string $uuid
+ * @property string|null $payment_method
  * @property string $name
  * @property string $phone
  * @property string $email
@@ -27,6 +28,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $count
  * @property string $amount
  * @property string $message
+ * @property string $payment_info
  * @property int|null $latest_payment_id
  * @property string|null $archive_at
  * @property \Carbon\CarbonImmutable|null $created_at
@@ -56,6 +58,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|Donation whereLatestPaymentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Donation whereMessage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Donation whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Donation wherePaymentInfo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Donation wherePaymentMethod($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Donation wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Donation whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Donation whereType($value)
@@ -76,6 +80,7 @@ class Donation extends Model
     protected $fillable = [
         'status',
         'uuid',
+        'payments_method',
         'name',
         'phone',
         'email',
@@ -84,7 +89,12 @@ class Donation extends Model
         'count',
         'amount',
         'message',
+        'payment_info',
         'latest_payment_id',
+    ];
+
+    protected $casts = [
+        'payment_info' => 'array',
     ];
 
     public function setStatusAttribute(DonationStatus $value)
