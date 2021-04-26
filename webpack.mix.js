@@ -12,7 +12,11 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/assets/js')
-mix.postCss('resources/css/app.css', 'public/assets/css', [require('tailwindcss')])
+mix.postCss('resources/css/app.css', 'public/assets/css', [
+  require('tailwindcss'),
+  require('postcss-nested'),
+  require('postcss-preset-env')({ stage: 0 })
+])
 
 mix.copy('node_modules/open-iconic/font/css/open-iconic.min.css', 'public/assets/vendor/open-iconic/css/open-iconic.min.css');
 mix.copy('node_modules/open-iconic/font/fonts', 'public/assets/vendor/open-iconic/fonts/');

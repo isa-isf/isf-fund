@@ -52,24 +52,24 @@
 
             <div class="w-full overflow-x-auto">
                 <x-card class="w-full" style="min-width:800px">
-                    <table class="w-full mb-4">
+                    <table class="table w-full mb-4">
                         <thead><tr>
-                            <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold" width="180">姓名</td>
-                            <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold">留言</td>
-                            <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="100">金額</td>
-                            <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="130">日期時間</td>
-                            <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="130"></td>
+                            <th width="180">姓名</th>
+                            <th>留言</th>
+                            <th class="text-right" width="100">金額</th>
+                            <th class="text-right" width="130">日期時間</th>
+                            <th class="text-right" width="130"></th>
                         </tr></thead>
                         <tbody>
                             @forelse($recentOneTime as $record)
                                 <tr>
-                                    <td class="px-2 py-1 border-b border-gray-200" title="{{ $record->hashid }}">{{ $record->name }}</td>
-                                    <td class="px-2 py-1 border-b border-gray-200">
+                                    <td title="{{ $record->hashid }}">{{ $record->name }}</td>
+                                    <td>
                                         {{ $record->message }}
                                     </td>
-                                    <td class="px-2 py-1 border-b border-gray-200 text-right">NT${{ number_format($record->amount) }}</td>
-                                    <td class="px-2 py-1 border-b border-gray-200 text-right">{{ $record->created_at->format('n-d H:i') }}</td>
-                                    <td class="px-2 py-1 border-b border-gray-200 text-right">
+                                    <td class="text-right">NT${{ number_format($record->amount) }}</td>
+                                    <td class="text-right">{{ $record->created_at->format('n-d H:i') }}</td>
+                                    <td class="text-right">
                                         <div class="flex justify-end">
                                             <a
                                                 href="{{ url("manage/donations/{$record->hashid}") }}"
@@ -105,32 +105,32 @@
 
             <div class="w-full overflow-x-auto">
                 <x-card class="w-full" style="min-width:600px">
-                    <table class="w-full mb-6">
+                    <table class="table w-full mb-6">
                         <thead><tr>
-                            <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-center" width="60">收？</td>
-                            <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold">姓名</td>
-                            <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="100">金額</td>
-                            <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="180">建立</td>
-                            <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="130">最近付款</td>
-                            <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="130"></td>
+                            <th class="text-center" width="60">收？</th>
+                            <th>姓名</th>
+                            <th class="text-right" width="100">金額</th>
+                            <th class="text-right" width="180">建立</th>
+                            <th class="text-right" width="130">最近付款</th>
+                            <th class="text-right" width="130"></th>
                         </tr></thead>
                         <tbody>
                             @foreach($donations as $record)
-                                <tr class="hover:bg-gray-100">
-                                    <td class="px-2 py-1 border-b border-gray-200 text-center">
+                                <tr>
+                                    <td class="text-center">
                                         @if(optional($record->getLastPaymentTime())->isCurrentMonth())
                                             <span class="oi" data-glyph="check"></span>
                                         @elseif(optional($record->getLastPaymentTime())->lt(now()->subMonths(2)))
                                             <span class="oi text-yellow-500" data-glyph="warning" title="超過 2 個月未收到款項"></span>
                                         @endif
                                     </td>
-                                    <td class="px-2 py-1 border-b border-gray-200" title="{{ $record->hashid }}">{{ $record->name }}</td>
-                                    <td class="px-2 py-1 border-b border-gray-200 text-right">NT${{ number_format($record->amount) }}</td>
-                                    <td class="px-2 py-1 border-b border-gray-200 text-right">{{ $record->created_at->format('Y-m-d') }}</td>
-                                    <td class="px-2 py-1 border-b border-gray-200 text-right">
+                                    <td title="{{ $record->hashid }}">{{ $record->name }}</td>
+                                    <td class="text-right">NT${{ number_format($record->amount) }}</td>
+                                    <td class="text-right">{{ $record->created_at->format('Y-m-d') }}</td>
+                                    <td class="text-right">
                                         {{ optional($record->getLastPaymentTime())->format('n-d H:i') ?? '' }}
                                     </td>
-                                    <td class="px-2 py-1 border-b border-gray-200 text-right flex justify-end">
+                                    <td class="flex justify-end">
                                         <a
                                             href="{{ url("manage/donations/{$record->hashid}") }}"
                                             class="flex flex-wrap items-center px-2 py-1 border border-blue-600 rounded bg-blue-500 hover:bg-blue-400 text-white"

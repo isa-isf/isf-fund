@@ -51,30 +51,30 @@
         </div>
         <div class="flex mx-2">
             <x-card class="w-full" style="min-width:900px">
-                <table class="w-full mb-6">
+                <table class="table w-full mb-6">
                     <thead><tr>
-                        <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="80">捐款#</td>
-                        <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-center" width="80">類型</td>
-                        <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-center" width="130">本月已收？</td>
-                        <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold">姓名</td>
-                        <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold">聯絡方式</td>
-                        <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="100">金額</td>
-                        <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="180">建立</td>
-                        <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="130">最近付款</td>
-                        <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="130"></td>
+                        <th class="text-right" width="80">捐款#</th>
+                        <th class="text-center" width="80">類型</th>
+                        <th class="text-center" width="130">本月已收？</th>
+                        <th>姓名</th>
+                        <th>聯絡方式</th>
+                        <th class="text-right" width="100">金額</th>
+                        <th class="text-right" width="180">建立</th>
+                        <th class="text-right" width="130">最近付款</th>
+                        <th class="text-right" width="130"></th>
                     </tr></thead>
                     <tbody>
                         @foreach($donations as $record)
                             <tr>
-                                <td class="px-2 py-1 border-b border-gray-200 text-right">{{ $record->hashid }}</td>
-                                <td class="px-2 py-1 border-b border-gray-200 text-center">
+                                <td class="text-right">{{ $record->hashid }}</td>
+                                <td class="text-center">
                                     @if(\App\Enums\DonationType::ONE_TIME()->equals($record->type))
                                         一次性
                                     @elseif(\App\Enums\DonationType::MONTHLY()->equals($record->type))
                                         月捐
                                     @endif
                                 </td>
-                                <td class="px-2 py-1 border-b border-gray-200 text-center">
+                                <td class="text-center">
                                     @if(\App\Enums\DonationType::ONE_TIME()->equals($record->type))
                                         <span title="一次性">-</span>
                                     @elseif(optional($record->getLastPaymentTime())->isCurrentMonth())
@@ -83,17 +83,17 @@
                                         <span class="oi text-yellow-500" data-glyph="warning" title="超過 2 個月未收到款項"></span>
                                     @endif
                                 </td>
-                                <td class="px-2 py-1 border-b border-gray-200">{{ $record->name }}</td>
-                                <td class="px-2 py-1 border-b border-gray-200">
+                                <td>{{ $record->name }}</td>
+                                <td>
                                     {{ $record->phone }}<br>
                                     {{ $record->email }}
                                 </td>
-                                <td class="px-2 py-1 border-b border-gray-200 text-right">NT${{ number_format($record->amount) }}</td>
-                                <td class="px-2 py-1 border-b border-gray-200 text-right">{{ $record->created_at->format('Y-m-d H:i') }}</td>
-                                <td class="px-2 py-1 border-b border-gray-200 text-right">
+                                <td class="text-right">NT${{ number_format($record->amount) }}</td>
+                                <td class="text-right">{{ $record->created_at->format('Y-m-d H:i') }}</td>
+                                <td class="text-right">
                                     {{ optional($record->getLastPaymentTime())->format('n-d H:i') ?? '' }}
                                 </td>
-                                <td class="px-2 py-1 border-b border-gray-200 text-right">
+                                <td class="text-right">
                                     <div class="flex justify-end">
                                         <a
                                             href="{{ url("manage/donations/{$record->hashid}") }}"

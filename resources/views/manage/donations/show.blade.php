@@ -74,24 +74,41 @@
                     </div>
                 </x-card>
                 <x-card title="收款歷史">
-                    <div>
+                    <div class="mb-4">
                         累計已收款：NT${{ number_format($donation->payments->filter(fn ($p) => \App\Enums\PaymentStatus::PAID()->equals($p->status))->sum('amount')) }}
                     </div>
-                    <ol class="list-decimal pl-6">
-                        @foreach($donation->payments as $payment)
-                            <li>
-                                [{{ $payment->hashid }}]
-                                @if(\App\Enums\PaymentStatus::PAID()->equals($payment->status))
-                                    [已付款]
-                                @elseif(\App\Enums\PaymentStatus::CREATED()->equals($payment->status))
-                                    <span class="text-red-600">[未付款]</span>
-                                @elseif(\App\Enums\PaymentStatus::FAILED()->equals($payment->status))
-                                    <span class="text-red-600">[付款失敗]</span>
-                                @endif
-                                {{ $payment->created_at }}
-                            </li>
-                        @endforeach
-                    </ol>
+                    <table class="table w-full">
+                        <thead><tr>
+                            <th class="w-16 text-right">#</th>
+                            <th class="w-48 text-right">綠界訂單#</th>
+                            <th class="w-24">狀態</th>
+                            <th class="text-left">交易時間</th>
+                        </tr></thead>
+                        <tbody>
+                            @foreach($donation->payments as $payment)
+                                <tr>
+                                    <td class="text-right">
+                                        <span class="font-mono">{{ $payment->hashid }}</span>
+                                    </td>
+                                    <td class="text-right">
+                                        <span class="font-mono">{{ $payment->gateway_id }}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        @if(\App\Enums\PaymentStatus::PAID()->equals($payment->status))
+                                            已付款
+                                        @elseif(\App\Enums\PaymentStatus::CREATED()->equals($payment->status))
+                                            <span class="text-red-600">未付款</span>
+                                        @elseif(\App\Enums\PaymentStatus::FAILED()->equals($payment->status))
+                                            <span class="text-red-600">付款失敗</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $payment->created_at }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </x-card>
             </div>
         </div>

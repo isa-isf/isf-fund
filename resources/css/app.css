@@ -4,8 +4,31 @@
 
 @tailwind utilities;
 
-@import '~notyf/notyf.min.css';
+@layer base {
+    .oi {
+        height: 1.2em;
+    }
 
-.oi {
-    height: 1.2em;
+    th {
+        @apply text-left;
+    }
 }
+
+@layer components {
+    @import '~notyf/notyf.min.css';
+
+    .table {
+        thead th {
+            @apply px-2 py-1 border-b-2 border-gray-300 font-semibold;
+        }
+
+        tbody tr {
+            @apply hover:bg-gray-100;
+        }
+
+        tbody td {
+            @apply px-2 py-1 border-b border-gray-200;
+        }
+    }
+}
+

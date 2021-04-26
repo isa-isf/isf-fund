@@ -66,38 +66,38 @@
         </div>
         <div class="flex mx-2 overflow-x-auto">
             <x-card class="w-full" style="min-width: 760px">
-                <table class="w-full mb-6">
+                <table class="table w-full mb-6">
                     <thead><tr>
-                        <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="80">捐款#</td>
-                        <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-center" width="130">已收？</td>
-                        <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold">姓名</td>
-                        <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="100">金額</td>
-                        <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="180">建立</td>
-                        <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="180">收款時間</td>
-                        <td class="px-2 py-1 border-b-2 border-gray-300 font-semibold text-right" width="130"></td>
+                        <th class="text-right" width="80">捐款#</th>
+                        <th class="text-center" width="130">已收？</th>
+                        <th>姓名</th>
+                        <th class="text-right" width="100">金額</th>
+                        <th class="text-right" width="180">建立</th>
+                        <th class="text-right" width="180">收款時間</th>
+                        <th class="text-right" width="130"></th>
                     </tr></thead>
                     <tbody>
                         @foreach($donations as $record)
                             <tr>
-                                <td class="px-2 py-1 border-b border-gray-200 text-right">{{ $record->hashid }}</td>
-                                <td class="px-2 py-1 border-b border-gray-200 text-center">
+                                <td class="text-right">{{ $record->hashid }}</td>
+                                <td class="text-center">
                                     @if(optional($record->getLastPaymentTime())->isSameMonth($baseDate))
                                         <span class="oi" data-glyph="check"></span>
                                     @elseif(optional($record->getLastPaymentTime())->lt($baseDate->subMonths(3)))
                                         <span class="oi text-yellow-500" data-glyph="warning" title="超過 2 個月未收到款項"></span>
                                     @endif
                                 </td>
-                                <td class="px-2 py-1 border-b border-gray-200">{{ $record->name }}</td>
-                                <td class="px-2 py-1 border-b border-gray-200 text-right">NT${{ number_format($record->amount) }}</td>
-                                <td class="px-2 py-1 border-b border-gray-200 text-right">{{ $record->created_at->format('Y-m-d') }}</td>
+                                <td>{{ $record->name }}</td>
+                                <td class="text-right">NT${{ number_format($record->amount) }}</td>
+                                <td class="text-right">{{ $record->created_at->format('Y-m-d') }}</td>
                                 @if(optional($record->getLastPaymentTime())->isSameMonth($baseDate))
-                                    <td class="px-2 py-1 border-b border-gray-200 text-right">
+                                    <td class="text-right">
                                         {{ $record->getLastPaymentTime()->format('d日 H:i') }}
                                     </td>
                                 @else
-                                    <td class="px-2 py-1 border-b border-gray-200 text-right">-</td>
+                                    <td class="text-right">-</td>
                                 @endif
-                                <td class="px-2 py-1 border-b border-gray-200 text-right flex justify-end">
+                                <td class="text-right flex justify-end">
                                     <a
                                         href="{{ url("manage/donations/{$record->hashid}") }}"
                                         class="flex flex-wrap items-center px-2 py-1 border border-blue-600 rounded bg-blue-500 hover:bg-blue-400 text-white"
