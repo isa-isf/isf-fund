@@ -24,6 +24,7 @@ Route::post('/donations/{uuid}/period-callback', [C\Donations\CallbackController
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/manage', [C\ManageController::class, 'index']);
     Route::get('/manage/income-report', [C\Manage\IncomeReportController::class, '__invoke']);
+    Route::get('/manage/address', [C\Manage\AddressController::class, '__invoke']);
     Route::get('/manage/donations', [C\DonationsController::class, 'index']);
     Route::get('/manage/donations/{donation}', [C\DonationsController::class, 'show']);
 });

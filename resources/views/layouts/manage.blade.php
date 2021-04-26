@@ -26,10 +26,14 @@
 
                 <div class="flex-grow flex justify-between">
                     @auth
-                        <nav class="flex items-stretch">
-                            <a href="{{ url('manage/income-report') }}" class="flex items-center p-2 text-gray-900 hover:bg-gray-100">
+                        <nav class="flex items-stretch -mx-2">
+                            <a href="{{ url('manage/income-report') }}" class="flex items-center mx-2 p-2 text-gray-900 hover:bg-gray-100">
                                 <span class="oi mr-1" data-glyph="graph"></span>
                                 收款報表
+                            </a>
+                            <a href="{{ url('manage/address') }}" class="flex items-center mx-2 p-2 text-gray-900 hover:bg-gray-100">
+                                <span class="oi mr-1" data-glyph="envelope-closed"></span>
+                                收件地址列表
                             </a>
                         </nav>
 
