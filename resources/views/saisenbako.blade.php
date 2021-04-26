@@ -187,7 +187,7 @@
                             class="w-64 px-3 py-2 border border-gray-400 focus:border-blue-700 rounded bg-white"
                             type="number"
                             name="payment[amount]"
-                            min="50"
+                            min="150"
                             max="10000"
                             placeholder="請填寫贊助金額"
                             x-model="payment.custom_amount"
@@ -216,7 +216,7 @@
                     </div>
                 </div>
 
-                <div class="text-gray-500">贊助方式選擇「每月定期」僅支援「信用卡」付款。若選擇「一次性贊助」可使用網路 ATM、ATM、超商代碼繳款等付款方式。</div>
+                <div class="text-gray-500">贊助方式選擇「每月定期」僅支援「信用卡」付款。若選擇「一次性贊助」可使用網路 ATM、ATM、超商代碼繳款等付款方式。選擇「一次性贊助」最小金額為 150 元。</div>
             </div>
 
             <div class="flex flex-col mb-4">
