@@ -1,6 +1,7 @@
 const colors = require('@isf/colours');
 
 module.exports = {
+  mode: 'jit',
   purge: [
     './app/View/Components/*.php',
     './resources/**/*.blade.php',
