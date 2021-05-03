@@ -68,5 +68,7 @@ final class PaymentUpdateResultCommand extends Command
         }
 
         $payment->save();
+
+        $payment->donation->updateLatestPayment();
     }
 }

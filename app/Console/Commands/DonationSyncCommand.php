@@ -61,10 +61,11 @@ final class DonationSyncCommand extends Command
                 ->map(function ($log) {
                     $payment = new Payment();
                     $payment->timestamps = false;
+
                     $payment->status = (int)$log['RtnCode'] === 1 ? PaymentStatus::PAID() : PaymentStatus::FAILED();
                     $payment->gateway_id = $log['TradeNo'];
                     $payment->amount = $log['amount'];
-                    $payment->created_at = now();
+                    $payment->created_at = $log['process_date'];
                     $payment->updated_at = $log['process_date'];
 
                     return $payment;

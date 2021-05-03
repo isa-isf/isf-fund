@@ -142,8 +142,11 @@ class Donation extends Model
 
     public function updateLatestPayment(): void
     {
+        /** @var \App\Models\Payment|null $latest */
         $latest = $this->payments()->latest()->first();
 
-        $this->update(['latest_payment_id' => $latest?->id]);
+        if ($latest !== null) {
+            $this->update(['latest_payment_id' => $latest->id]);
+        }
     }
 }
