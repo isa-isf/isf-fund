@@ -61,9 +61,12 @@ final class PaymentUpdateResultCommand extends Command
         parse_str($response->body(), $responseData);
         $responseData = optional($responseData);
 
+        $payment->gateway_id = $responseData['TradeNo'] ?? '';
+
         if ($responseData['TradeStatus'] === '1') {
             $payment->status = PaymentStatus::PAID();
-            $payment->save();
         }
+
+        $payment->save();
     }
 }
