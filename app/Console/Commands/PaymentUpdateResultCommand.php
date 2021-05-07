@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Enums\DonationStatus;
 use App\Enums\PaymentStatus;
 use App\Models\Payment;
 use App\Services\Ecpay;
@@ -65,8 +66,11 @@ final class PaymentUpdateResultCommand extends Command
 
         if ($responseData['TradeStatus'] === '1') {
             $payment->status = PaymentStatus::PAID();
+
+            $payment->donation->status = DonationStatus::ACTIVE();
         }
 
+        $payment->donation->save();
         $payment->save();
 
         $payment->donation->updateLatestPayment();
