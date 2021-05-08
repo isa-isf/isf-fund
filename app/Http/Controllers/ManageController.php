@@ -28,7 +28,8 @@ class ManageController
             ->where('type', DonationType::MONTHLY())
             ->latest()
             ->with(['latest_payment'])
-            ->get();
+            ->get()
+            ->sortBy('latest_payment.updated_at');
 
         $analytics = [];
         $analytics['monthly'] = $donations->sum('amount');
