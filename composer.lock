@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ee8c7cb4564afb8031249a46525e280c",
+    "content-hash": "f24cc53ba1266bf0ee046145d6ba04ff",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -7869,16 +7869,16 @@
         },
         {
             "name": "laravel-lang/lang",
-            "version": "9.1.2",
+            "version": "10.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Lang/lang.git",
-                "reference": "8c5cc7a493af27e175a9f1b7f5c2242bb9faec87"
+                "reference": "60f34386a9223bbf40b179b54f9977d5e12391d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/8c5cc7a493af27e175a9f1b7f5c2242bb9faec87",
-                "reference": "8c5cc7a493af27e175a9f1b7f5c2242bb9faec87",
+                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/60f34386a9223bbf40b179b54f9977d5e12391d4",
+                "reference": "60f34386a9223bbf40b179b54f9977d5e12391d4",
                 "shasum": ""
             },
             "require": {
@@ -7886,10 +7886,14 @@
             },
             "require-dev": {
                 "andrey-helldar/pretty-array": "^2.3",
-                "andrey-helldar/support": "^3.6",
+                "andrey-helldar/support": "^3.16.1",
                 "guzzlehttp/guzzle": "^7.3",
+                "laravel/breeze": "^1.2",
+                "laravel/fortify": "^1.7",
+                "laravel/jetstream": "^2.3",
                 "php": "^8.0",
                 "phpunit/phpunit": "^9.5",
+                "symfony/finder": "^5.2",
                 "symfony/var-dumper": "^5.2",
                 "vlucas/phpdotenv": "^5.3"
             },
@@ -7920,7 +7924,7 @@
                 "issues": "https://github.com/Laravel-Lang/lang/issues",
                 "source": "https://github.com/Laravel-Lang/lang"
             },
-            "time": "2021-05-14T21:25:59+00:00"
+            "time": "2021-06-02T08:34:14+00:00"
         },
         {
             "name": "maximebf/debugbar",
