@@ -59,7 +59,7 @@ class DonationsController extends Controller
             'payment.type' => ['required', Rule::in(DonationType::values())],
             'payment.amount' => ['required', 'integer', 'in:0,500,1000,2000,3000,4000,5000'],
             'payment.count' => ['required', 'integer', Rule::in(['12', '24', '36', '48', '99'])],
-            'payment.custom_amount' => ['required_if:amount,0', 'integer', 'min:50', 'max:10000'],
+            'payment.custom_amount' => ['required_if:amount,0', 'integer', 'min:100', 'max:10000'],
         ], [], [
             'profile.name' => '姓名',
             'profile.phone' => '電話',
